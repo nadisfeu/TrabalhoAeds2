@@ -51,25 +51,34 @@ void criarBase(FILE *out, int tam){
 
 }
 
-TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt){
-    TFunc *func = (TFunc *) malloc(sizeof(TFunc));
-    func->cod = 0;
+TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt, char tipo[]){
+    
+    if(strcmp(tipo,"TFunc")){
+        TFunc *geral = (TFunc *) malloc(sizeof(TFunc));
+    }
+    else if (strcmp(tipo, "TMesa"))
+    {
+        TFunc *geral = (TMesa *) malloc(sizeof(TMesa));
+    }
+    
+    TFunc *geral = (TFunc *) malloc(sizeof(TFunc));
+    geral->cod = 0;
     int comp = 0;
     time_t begin = time(NULL);
     
     for( int i = 0; i < qnt; i++){
         fseek(out, tamanho_registro()*i,SEEK_SET);
-        func = le(out);
+        geral = le(out);
         comp++;
-        if (func->cod == cod){
+        if (geral->cod == cod){
             time_t end = time(NULL);
             salva_no_log(log, comp, (end - begin), "BuscaSequencial-Encontrado");
-            return func;
+            return geral;
         }
     }
     time_t end = time(NULL);
     salva_no_log(log, comp, end - begin, "BuscaSequencial-Nao Encontrado");
-    return func;
+    return geral;
 }
 
 TFunc *BuscaBinaria(FILE *log, int chave, FILE *in, int inicio, int fim){

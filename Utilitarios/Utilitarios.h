@@ -16,7 +16,7 @@ void shuffle(int *vet,int MAX,int MIN);
 
 void criarBase(FILE *out, int tam);
 
-TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt);
+TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt, char tipo[]);
 
 TFunc *BuscaBinaria(FILE *log, int chave, FILE *in, int inicio, int fim);
 
