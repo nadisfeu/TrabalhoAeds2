@@ -7,7 +7,6 @@
 #include "Utilitarios.h"
 
 
-
 void salva_no_log(FILE *log, int comp, int time, char s[]){
     fprintf(log, "Tipo de busca: %s", s);
     fprintf(log, "\tComparacoes: %d\t", comp);
