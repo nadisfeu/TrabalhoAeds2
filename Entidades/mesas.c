@@ -3,14 +3,15 @@
 #include <string.h>
 #include <time.h> 
 
-#include "Entidades/Headers/mesas.h"
+//#include "Entidades/Headers/mesas.h"
+#include "mesas.h"
 
 int tamanho_registro_Mesa(){
     return sizeof(int) // cod
     + sizeof(int)     // numClientes
+    + sizeof(double) // divida
     + sizeof(int)
-    + sizeof(TPedido)*100 //pedidos
-    + sizeof(double); // divida
+    + sizeof(int)*100; //pedidos
 }
 
 
@@ -20,46 +21,47 @@ TMesa *mesa(int cod, int numClientes, double divida){
     //copia valores para os campos de mesa
     mesa->cod = cod;
     mesa->numClientes = numClientes;
-    mesa->numeroPedidos = 0;
     mesa->divida = divida;
+    mesa->numeroPedidos = 0;
+    
     return mesa;
 }
 
 
 //salva os mesaionarios dentro do arquivo
 void salvaMesa(TMesa *mesa, FILE *out){
-
         fwrite(&mesa->cod, sizeof(int),1, out);
-
         fwrite(&mesa->numClientes, sizeof(int),1, out);
-
         fwrite(&mesa->divida, sizeof(double), 1, out);
-
+        fwrite(&mesa->numeroPedidos, sizeof(int),1, out);
+        fwrite(mesa->pedidos, sizeof(int),100, out);
 }
 
 
-TMesa *leMesa(FILE *in){
+TMesa *leMesa(FILE *in){ 
     TMesa *mesa = (TMesa *) malloc(sizeof(TMesa));
     if(0 >= fread(&mesa->cod, sizeof(int), 1, in)){
         free(mesa);
         return NULL;
     }
-    TPedido *p = (TPedido *) malloc(sizeof(TPedido));
-    for(int i = 0; i < mesa->numeroPedidos;i++){
-        p = lePedido(in);
-        mesa->pedidos[i] = *p;
-
-    }
-    fread(&mesa->numClientes, sizeof(double), 1, in);
+    fread(&mesa->numClientes, sizeof(int), 1, in);
     fread(&mesa->divida, sizeof(double), 1, in);
+    fread(&mesa->numeroPedidos, sizeof(int),1, in);
+    fread(mesa->pedidos,sizeof(int),100,in);
+    mesa->numeroPedidos = 7;
+    mesa->pedidos[1] = 125;
     return mesa;
 }
 
-void imprimeMesa(TMesa *mesa){
+void imprimeMesa(TMesa mesa){
     printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-    printf("\nmesaionario de codigo: %d\n", mesa->cod);
-    printf("Numero de Clientes %d\n", mesa->numClientes);
-    printf("divida: %.2f\n", mesa->divida);
+    printf("\nMesa de codigo: %d\n", mesa.cod);
+    printf("Numero de Clientes %d\n", mesa.numClientes);
+    printf("divida: %.2f\n", mesa.divida);
+    printf("Numero de pedidos: %d ", mesa.numeroPedidos);
+    printf("Lista de pedidos:\t");
+    for (int i = 0; i < mesa.numeroPedidos; i++)
+        printf("%d\t", mesa.pedidos[i]);
     printf("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 }
 
@@ -68,10 +70,10 @@ void imprimeTodosMesa(FILE *in){
     TMesa *mesa;
     rewind(in);
     
-    printf("Lendo arquivo de mesaionarios...\n");
+    printf("Lendo arquivo de mesa...\n");
     
-    while((mesa=le(in))!=NULL){
-        imprime(mesa);
+    while((mesa=leMesa(in))!=NULL){
+        imprimeMesa(*mesa);
         }
     
     free(mesa);
@@ -79,13 +81,13 @@ void imprimeTodosMesa(FILE *in){
     system("pause");
     system("cls");
 }
-
+/*
 //salva todos os mesaionarios de forma ordenada
 void salvaMesaOrdenados(FILE *out, int qnt){
 TMesa *f;
     for(int i = 0; i < qnt; i++){
-        f= mesaionario(i+1,"CaoMiudo","000.000.000-00","01/01/1980",3000);
-        salva(f,out);   
+        f= mesa(i+1,"CaoMiudo","000.000.000-00","01/01/1980",3000);
+        salvaMesa(f,out);   
     }
 free(f);
 }
@@ -100,3 +102,4 @@ void salvaMesaDesordenados(FILE *out, int qnt){
     }
 free(f);
 }
+*/

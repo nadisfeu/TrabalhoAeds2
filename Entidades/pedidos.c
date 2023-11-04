@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h> 
 
-#include "Entidades/Headers/pedidos.h"
+#include "pedidos.h"
 
 int tamanho_registro_Pedido(){
     return sizeof(int) // cod
@@ -60,8 +60,8 @@ void imprimeTodosPedido(FILE *in){
     
     printf("Lendo arquivo de Pedidoionarios...\n");
     
-    while((Pedido=le(in))!=NULL){
-        imprime(Pedido);
+    while((Pedido=lePedido(in))!=NULL){
+        imprimePedido(Pedido);
         }
     
     free(Pedido);
@@ -70,6 +70,7 @@ void imprimeTodosPedido(FILE *in){
     system("cls");
 }
 
+/*
 //salva todos os Pedidoionarios de forma ordenada
 void salvaPedidoOrdenados(FILE *out, int qnt){
 TPedido *f;
@@ -90,3 +91,4 @@ void salvaPedidoDesordenados(FILE *out, int qnt){
     }
 free(f);
 }
+*/

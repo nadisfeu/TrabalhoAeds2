@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "Entidades/Headers/pedidos.h"
+#include "pedidos.c"
 
 typedef struct mesa
 {
@@ -12,7 +12,7 @@ typedef struct mesa
     int numClientes;
     double divida;
     int numeroPedidos;
-    TPedido pedidos[];
+    int pedidos[100];
 } TMesa;
 
 //retorna o tamanho do registro de cada funcionario
@@ -29,12 +29,14 @@ void salvaMesa(TMesa *mesa, FILE *out);
 TMesa *leMesa(FILE *in);
 
 //imprime um unico funcionario na tela
-void imprimeMesa(TMesa *mesa);
+void imprimeMesa(TMesa mesa);
 
 void imprimeTodosMesa(FILE *in);
 
+/*
 void salvaMesaOrdenados(FILE *out, int qnt);
 
 void salvaMesaDesordenados(FILE *out, int qnt);
+*/
 
 #endif
