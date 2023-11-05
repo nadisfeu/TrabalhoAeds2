@@ -48,8 +48,6 @@ TMesa *leMesa(FILE *in){
     fread(&mesa->divida, sizeof(double), 1, in);
     fread(&mesa->numeroPedidos, sizeof(int),1, in);
     fread(mesa->pedidos,sizeof(int),100,in);
-    mesa->numeroPedidos = 7;
-    mesa->pedidos[1] = 125;
     return mesa;
 }
 
@@ -81,6 +79,7 @@ void imprimeTodosMesa(FILE *in){
     system("pause");
     system("cls");
 }
+
 /*
 //salva todos os mesaionarios de forma ordenada
 void salvaMesaOrdenados(FILE *out, int qnt){

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h> 
 
-#include "Entidades/Headers/funcionario.h"
+#include "funcionario.h"
 
 int tamanho_registro(){
     return sizeof(int) // cod

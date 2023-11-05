@@ -6,15 +6,20 @@
 #include <string.h>
 #include <time.h> 
 
-#include "../Entidades/Headers/funcionario.h"
+#include "../Entidades/funcionario.h"
+#include "../Entidades/mesas.h"
+#include "../Entidades/pedidos.h"
 
 void salva_no_log(FILE *log, int comp, int begin, char s[]);
 
 int tamanho_arquivo(FILE *arq);
 
+// embaralha base de dados
 void shuffle(int *vet,int MAX,int MIN);
 
-void criarBase(FILE *out, int tam);
+// Tipos validos: funcionario, pedido, mesa
+// verifica o tipo e cria a base desejada
+void criarBase(FILE *out, int tam, char *tipo);
 
 TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt, char tipo[]);
 

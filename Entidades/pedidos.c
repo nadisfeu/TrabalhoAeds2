@@ -7,7 +7,7 @@
 
 int tamanho_registro_Pedido(){
     return sizeof(int) // cod
-    + sizeof(char)*30
+    + sizeof(char)*30  // nome do pedido
     + sizeof(double) ; // valor
 }
 
@@ -47,8 +47,8 @@ TPedido *lePedido(FILE *in){
 
 void imprimePedido(TPedido *Pedido){
     printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-    printf("\nPedidoionario de codigo: %d\n", Pedido->cod);
-    printf("Numero de Clientes %s\n", Pedido->nomePedido);
+    printf("\nPedido de codigo: %d\n", Pedido->cod);
+    printf("Nome de pedidos %s\n", Pedido->nomePedido);
     printf("valor: %.2f\n", Pedido->valor);
     printf("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 }

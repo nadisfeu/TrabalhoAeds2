@@ -5,24 +5,39 @@
 
 // #include "Entidades/Headers/mesas.h"
 #include "mesas.c"
+#include "funcionario.c"
+#include "../Utilitarios/Utilitarios.c"
 
 int main()
 {
-    FILE *in;
-    if ((in = fopen("teste.dat", "w+b")) == NULL)
+    FILE *mesas, *pedidos, *funcionarios, *log;
+    if ((mesas = fopen("mesas.dat", "w+b")) == NULL || (pedidos = fopen("pedidos.dat", "w+b")) == NULL 
+    || (funcionarios = fopen("funcionarios.dat", "w+b")) == NULL || (log= fopen("log.txt", "w+")) == NULL)
     {
         printf("erro ao abrir");
         exit(1);
     }
     else
     {
+    /*  FILE *a;
+        a = fopen("teste.dat","w+b");
         TMesa *m;
         m = mesa(123, 2, 1550);
-        salvaMesa(m, in);
-        rewind(in);
-        m = leMesa(in);
+        salvaMesa(m, a);
+        rewind(a);
+        m = leMesa(a);
         printf("aa");
-        imprimeMesa(*m);
+        imprimeMesa(*m); */
+     
+        criarBase(mesas, 10,"mesa");
+        imprimeTodosMesa(mesas);
+        
+        criarBase(funcionarios, 4, "funcionario");
+        imprimeTodos(funcionarios);
+
+        criarBase(pedidos,6,"pedido");
+        imprimeTodosPedido(pedidos);
+
         return 0;
     }
 }
