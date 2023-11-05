@@ -30,7 +30,7 @@ void shuffle(int *vet, int MAX, int MIN)
         vet[i] = tmp;
     }
 }
-     
+
 void criarBase(FILE *out, int tam, char *tipo)
 {
     int resultado;
@@ -40,9 +40,8 @@ void criarBase(FILE *out, int tam, char *tipo)
 
     // shuffle(vet,tam,(tam*1)/100);
 
-
     resultado = strcmp(tipo, "mesa");
-    
+
     if (strcmp(tipo, "mesa") == 0)
     {
         printf("\nGerando a base de dados da Mesa...\n");
@@ -54,14 +53,14 @@ void criarBase(FILE *out, int tam, char *tipo)
         }
 
         free(f);
-    } 
+    }
     else if (strcmp(tipo, "funcionario") == 0)
     {
         printf("\nGerando a base de dados de Funcionarios...\n");
         TFunc *f;
         for (int i = 0; i < tam; i++)
         {
-            f = funcionario(vet[i], "Julio", "889.785.521-09", "22/10/2003", (i+1) * 1000 + ((i-1)*231));
+            f = funcionario(vet[i], "Julio", "889.785.521-09", "22/10/2003", (i + 1) * 1000 + ((i - 1) * 231));
             salva(f, out);
         }
 
@@ -83,30 +82,59 @@ void criarBase(FILE *out, int tam, char *tipo)
         printf("ERRO AO DEFINIR O TIPO");
 }
 
-TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt, char tipo[])
+TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt, char *tipo)
 {
-
-
-    TFunc *geral = (TFunc *)malloc(sizeof(TFunc));
-    geral->cod = 0;
-    int comp = 0;
-    time_t begin = time(NULL);
-
-    for (int i = 0; i < qnt; i++)
+    if (strcmp(tipo, "funcionario") == 0)
     {
-        fseek(out, tamanho_registro() * i, SEEK_SET);
-        geral = le(out);
-        comp++;
-        if (geral->cod == cod)
+        TFunc *geral = (TFunc *)malloc(sizeof(TFunc));
+        geral->cod = 0;
+        int comp = 0;
+        time_t begin = time(NULL);
+
+        for (int i = 0; i < qnt; i++)
         {
-            time_t end = time(NULL);
-            salva_no_log(log, comp, (end - begin), "BuscaSequencial-Encontrado");
-            return geral;
+            fseek(out, tamanho_registro() * i, SEEK_SET);
+            geral = le(out);
+            comp++;
+            if (geral->cod == cod)
+            {
+                time_t end = time(NULL);
+                salva_no_log(log, comp, (end - begin), "Busca Sequencial Funcionario - Encontrado\t");
+                return geral;
+            }
         }
+        time_t end = time(NULL);
+        salva_no_log(log, comp, end - begin, "Busca Sequencial Funcionario - Nao Encontrado\t");
+        return geral;
     }
-    time_t end = time(NULL);
-    salva_no_log(log, comp, end - begin, "BuscaSequencial-Nao Encontrado");
-    return geral;
+    else if (tipo, "mesa")
+    {
+        TMesa *geral = (TMesa *)malloc(sizeof(TMesa));
+        geral->cod = 0;
+        int comp = 0;
+        time_t begin = time(NULL);
+
+        for (int i = 0; i < qnt; i++)
+        {
+            fseek(out, tamanho_registro_Mesa() * i, SEEK_SET);
+            geral = leMesa(out);
+            comp++;
+            if (geral->cod == cod)
+            {
+                time_t end = time(NULL);
+                salva_no_log(log, comp, (end - begin), "Busca Sequencial Mesa - Encontrado\t");
+                return geral;
+            }
+        }
+        time_t end = time(NULL);
+        salva_no_log(log, comp, end - begin, "Busca Sequencial Mesa - Nao Encontrado\t");
+        return geral;
+    }
+    else if (strcmp(tipo,"pedido") == 0)
+    {
+       
+    }
+    
 }
 
 /*
