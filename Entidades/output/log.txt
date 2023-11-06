@@ -1,0 +1,1 @@
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 2	Tempo: 0

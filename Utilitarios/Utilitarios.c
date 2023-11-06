@@ -33,14 +33,11 @@ void shuffle(int *vet, int MAX, int MIN)
 
 void criarBase(FILE *out, int tam, char *tipo)
 {
-    int resultado;
     int vet[tam];
     for (int i = 0; i < tam; i++)
         vet[i] = i + 1;
 
     // shuffle(vet,tam,(tam*1)/100);
-
-    resultado = strcmp(tipo, "mesa");
 
     if (strcmp(tipo, "mesa") == 0)
     {
@@ -82,61 +79,75 @@ void criarBase(FILE *out, int tam, char *tipo)
         printf("ERRO AO DEFINIR O TIPO");
 }
 
-TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt, char *tipo)
+TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt)
 {
-    if (strcmp(tipo, "funcionario") == 0)
-    {
-        TFunc *geral = (TFunc *)malloc(sizeof(TFunc));
-        geral->cod = 0;
-        int comp = 0;
-        time_t begin = time(NULL);
+    int comp = 0;
+    time_t begin = time(NULL);
 
-        for (int i = 0; i < qnt; i++)
-        {
-            fseek(out, tamanho_registro() * i, SEEK_SET);
-            geral = le(out);
-            comp++;
-            if (geral->cod == cod)
-            {
-                time_t end = time(NULL);
-                salva_no_log(log, comp, (end - begin), "Busca Sequencial Funcionario - Encontrado\t");
-                return geral;
-            }
-        }
-        time_t end = time(NULL);
-        salva_no_log(log, comp, end - begin, "Busca Sequencial Funcionario - Nao Encontrado\t");
-        return geral;
-    }
-    else if (tipo, "mesa")
-    {
-        TMesa *geral = (TMesa *)malloc(sizeof(TMesa));
-        geral->cod = 0;
-        int comp = 0;
-        time_t begin = time(NULL);
+    TFunc *geral = (TFunc *)malloc(sizeof(TFunc));
+    geral->cod = 0;
 
-        for (int i = 0; i < qnt; i++)
-        {
-            fseek(out, tamanho_registro_Mesa() * i, SEEK_SET);
-            geral = leMesa(out);
-            comp++;
-            if (geral->cod == cod)
-            {
-                time_t end = time(NULL);
-                salva_no_log(log, comp, (end - begin), "Busca Sequencial Mesa - Encontrado\t");
-                return geral;
-            }
-        }
-        time_t end = time(NULL);
-        salva_no_log(log, comp, end - begin, "Busca Sequencial Mesa - Nao Encontrado\t");
-        return geral;
-    }
-    else if (strcmp(tipo,"pedido") == 0)
+    for (int i = 0; i < qnt; i++)
     {
-       
+        fseek(out, tamanho_registro() * i, SEEK_SET);
+        geral = le(out);
+        comp++;
+        if (geral->cod == cod)
+        {
+            time_t end = time(NULL);
+            salva_no_log(log, comp, (end - begin), "Busca Sequencial Funcionario - Encontrado\t");
+            return geral;
+        }
     }
-    
+    time_t end = time(NULL);
+    salva_no_log(log, comp, end - begin, "Busca Sequencial Funcionario - Nao Encontrado\t");
+    return geral;
 }
 
+TMesa *BuscaSequencialMesa(FILE *log, FILE *out, int cod, int qnt)
+{
+    int comp = 0;
+    time_t begin = time(NULL);
+    TMesa *geral = (TMesa *)malloc(sizeof(TMesa));
+    for (int i = 0; i < qnt; i++)
+    {
+        fseek(out, tamanho_registro_Mesa() * i, SEEK_SET);
+        geral = leMesa(out);
+        comp++;
+        if (geral->cod == cod)
+        {
+            time_t end = time(NULL);
+            salva_no_log(log, comp, (end - begin), "Busca Sequencial Mesa - Encontrado\t");
+            return geral;
+        }
+    }
+    time_t end = time(NULL);
+    salva_no_log(log, comp, end - begin, "Busca Sequencial Mesa - Nao Encontrado\t");
+    return geral;
+}
+
+TPedido *BuscaSequencialPedido(FILE *log, FILE *out, int cod, int qnt)
+{
+    int comp = 0;
+    time_t begin = time(NULL);
+    TPedido *geral = (TPedido *)malloc(sizeof(TPedido));
+
+    for (int i = 0; i < qnt; i++)
+    {
+        fseek(out, tamanho_registro_Pedido() * i, SEEK_SET);
+        geral = lePedido(out);
+        comp++;
+        if (geral->cod == cod)
+        {
+            time_t end = time(NULL);
+            salva_no_log(log, comp, (end - begin), "Busca Sequencial Pedido - Encontrado\t");
+            return geral;
+        }
+    }
+    time_t end = time(NULL);
+    salva_no_log(log, comp, end - begin, "Busca Sequencial Pedido - Nao Encontrado\t");
+    return geral;
+}
 /*
 TFunc *BuscaBinaria(FILE *log, int chave, FILE *in, int inicio, int fim)
 {

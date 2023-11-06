@@ -38,6 +38,8 @@ int main()
         criarBase(pedidos,6,"pedido");
         imprimeTodosPedido(pedidos);
 
+        BuscaSequencialMesa(log, mesas, 2, 10);
+
         return 0;
     }
 }

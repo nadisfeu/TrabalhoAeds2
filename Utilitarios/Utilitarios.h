@@ -21,7 +21,12 @@ void shuffle(int *vet,int MAX,int MIN);
 // verifica o tipo e cria a base desejada
 void criarBase(FILE *out, int tam, char *tipo);
 
-TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt, char *tipo);
+// Tipos validos: funcionario, pedido, mesa
+TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt);
+
+TMesa *BuscaSequencialMesa(FILE *log, FILE *out, int cod, int qnt);
+
+TPedido *BuscaSequencialPedido(FILE *log, FILE *out, int cod, int qnt);
 
 TFunc *BuscaBinaria(FILE *log, int chave, FILE *in, int inicio, int fim);
 
