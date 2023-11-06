@@ -11,7 +11,7 @@
 int main()
 {
     FILE *mesas, *pedidos, *funcionarios, *log;
-    if ((mesas = fopen("../output/mesas.dat", "w+b")) == NULL || (pedidos = fopen("../output/pedidos.dat", "w+b")) == NULL 
+    if ((mesas = fopen("../output/mesas.dat", "w+b")) == NULL || (pedidos = fopen("../output/pedidos.dat", "a+b")) == NULL 
     || (funcionarios = fopen("../output/funcionarios.dat", "w+b")) == NULL || (log= fopen("../output/log.txt", "a+")) == NULL)
     {
         printf("erro ao abrir");
@@ -37,8 +37,13 @@ int main()
         criarBase(funcionarios, qntMesas/4, "funcionario");
         imprimeTodos(funcionarios);
 
+        /*
         criarBase(pedidos,6,"pedido");
         imprimeTodosPedido(pedidos);
+        */
+        
+        adicionaPedido( pedidos, "cha", 21, 12.2);
+        imprimeTodosPedido( pedidos);
 
         BuscaSequencialMesa(log, mesas, 2, 10);
         BuscaSequencial(log,funcionarios,3,4);

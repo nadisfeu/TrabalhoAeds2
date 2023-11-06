@@ -11,7 +11,6 @@ int tamanho_registro_Pedido(){
     + sizeof(double) ; // valor
 }
 
-
 TPedido *Pedido(int cod,char nome[], double valor){
     TPedido *Pedido = (TPedido *)malloc(sizeof(TPedido));
     if (Pedido) memset(Pedido, 0, sizeof(TPedido));
@@ -21,7 +20,6 @@ TPedido *Pedido(int cod,char nome[], double valor){
     Pedido->valor = valor;
     return Pedido;
 }
-
 
 //salva os Pedidoionarios dentro do arquivo
 void salvaPedido(TPedido *Pedido, FILE *out){
@@ -58,7 +56,7 @@ void imprimeTodosPedido(FILE *in){
     TPedido *Pedido;
     rewind(in);
     
-    printf("Lendo arquivo de Pedidoionarios...\n");
+    printf("Lendo arquivo de Pedidos...\n");
     
     while((Pedido=lePedido(in))!=NULL){
         imprimePedido(Pedido);
@@ -70,25 +68,8 @@ void imprimeTodosPedido(FILE *in){
     system("cls");
 }
 
-/*
-//salva todos os Pedidoionarios de forma ordenada
-void salvaPedidoOrdenados(FILE *out, int qnt){
-TPedido *f;
-    for(int i = 0; i < qnt; i++){
-        f= Pedidoionario(i+1,"CaoMiudo","000.000.000-00","01/01/1980",3000);
-        salva(f,out);   
-    }
-free(f);
+void adicionaPedido(FILE *out,char nome[],int cod, double valor){
+    TPedido *p = Pedido(cod,nome,valor);
+    salvaPedido(p,out);
+    free(p);
 }
-
-//salva todos os Pedidoionarios de forma desordenada
-void salvaPedidoDesordenados(FILE *out, int qnt){
-    srand(time(NULL));
-    TPedido *f;
-    for(int i = 0; i < qnt; i++){
-        f= Pedidoionario(rand() % qnt,"CaoMiudo","000.000.000-00","01/01/1980",3000);
-        salva(f,out);
-    }
-free(f);
-}
-*/

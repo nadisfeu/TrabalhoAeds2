@@ -80,25 +80,7 @@ void imprimeTodosMesa(FILE *in){
     system("cls");
 }
 
-/*
-//salva todos os mesaionarios de forma ordenada
-void salvaMesaOrdenados(FILE *out, int qnt){
-TMesa *f;
-    for(int i = 0; i < qnt; i++){
-        f= mesa(i+1,"CaoMiudo","000.000.000-00","01/01/1980",3000);
-        salvaMesa(f,out);   
-    }
-free(f);
+void fazPedidoMesa(TMesa *m, int cod){
+    m->pedidos[m->numeroPedidos] = cod;
+    m->numeroPedidos++;
 }
-
-//salva todos os mesaionarios de forma desordenada
-void salvaMesaDesordenados(FILE *out, int qnt){
-    srand(time(NULL));
-    TMesa *f;
-    for(int i = 0; i < qnt; i++){
-        f= mesaionario(rand() % qnt,"CaoMiudo","000.000.000-00","01/01/1980",3000);
-        salva(f,out);
-    }
-free(f);
-}
-*/

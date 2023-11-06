@@ -28,8 +28,6 @@ void imprimePedido(TPedido *Pedido);
 
 void imprimeTodosPedido(FILE *in);
 
-void salvaPedidoOrdenados(FILE *out, int qnt);
-
-void salvaPedidoDesordenados(FILE *out, int qnt);
+void adicionaPedido(FILE *out,char nome[],int cod,double valor);
 
 #endif
