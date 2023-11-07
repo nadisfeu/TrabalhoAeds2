@@ -6,11 +6,11 @@
 
 #include "Utilitarios.h"
 
-void salva_no_log(FILE *log, int comp, int time, char s[])
+void salva_no_log(FILE *log, int comp, double time, char s[])
 {
     fprintf(log, "Tipo de busca: %s", s);
     fprintf(log, "\tComparacoes: %d\t", comp);
-    fprintf(log, "Tempo: %d\n", time);
+    fprintf(log, "Tempo: %f\n", time);
 }
 
 int tamanho_arquivo(FILE *arq)
@@ -81,8 +81,9 @@ void criarBase(FILE *out, int tam, char *tipo)
 
 TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt)
 {
+    clock_t begin,end;
+    begin = clock();
     int comp = 0;
-    time_t begin = time(NULL);
 
     TFunc *geral = (TFunc *)malloc(sizeof(TFunc));
     geral->cod = 0;
@@ -94,20 +95,21 @@ TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt)
         comp++;
         if (geral->cod == cod)
         {
-            time_t end = time(NULL);
-            salva_no_log(log, comp, (end - begin), "Busca Sequencial Funcionario - Encontrado\t");
+            end = clock();
+            salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Funcionario - Encontrado\t");
             return geral;
         }
     }
-    time_t end = time(NULL);
-    salva_no_log(log, comp, end - begin, "Busca Sequencial Funcionario - Nao Encontrado\t");
+    end = clock();
+    salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Funcionario - Nao Encontrado\t");
     return geral;
 }
 
 TMesa *BuscaSequencialMesa(FILE *log, FILE *out, int cod, int qnt)
 {
+    clock_t begin,end;
+    begin = clock();
     int comp = 0;
-    time_t begin = time(NULL);
     TMesa *geral = (TMesa *)malloc(sizeof(TMesa));
     for (int i = 0; i < qnt; i++)
     {
@@ -116,20 +118,21 @@ TMesa *BuscaSequencialMesa(FILE *log, FILE *out, int cod, int qnt)
         comp++;
         if (geral->cod == cod)
         {
-            time_t end = time(NULL);
-            salva_no_log(log, comp, (end - begin), "Busca Sequencial Mesa - Encontrado\t");
+            end = clock();
+            salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Mesa - Encontrado\t");
             return geral;
         }
     }
-    time_t end = time(NULL);
-    salva_no_log(log, comp, end - begin, "Busca Sequencial Mesa - Nao Encontrado\t");
+    end = clock();
+    salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Mesa - Nao Encontrado\t");
     return geral;
 }
 
 TPedido *BuscaSequencialPedido(FILE *log, FILE *out, int cod, int qnt)
 {
     int comp = 0;
-    time_t begin = time(NULL);
+    clock_t begin,end;
+    begin = clock();
     TPedido *geral = (TPedido *)malloc(sizeof(TPedido));
 
     for (int i = 0; i < qnt; i++)
@@ -139,13 +142,13 @@ TPedido *BuscaSequencialPedido(FILE *log, FILE *out, int cod, int qnt)
         comp++;
         if (geral->cod == cod)
         {
-            time_t end = time(NULL);
-            salva_no_log(log, comp, (end - begin), "Busca Sequencial Pedido - Encontrado\t");
+            end = clock();
+            salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Pedido - Encontrado\t");
             return geral;
         }
     }
-    time_t end = time(NULL);
-    salva_no_log(log, comp, end - begin, "Busca Sequencial Pedido - Nao Encontrado\t");
+    end = clock();
+    salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Pedido - Nao Encontrado\t");
     return geral;
 }
 /*

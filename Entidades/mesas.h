@@ -28,12 +28,15 @@ void salvaMesa(TMesa *mesa, FILE *out);
 // le e retorna os dados do funcionario do arquivo 
 TMesa *leMesa(FILE *in);
 
-//imprime um unico funcionario na tela
+//imprime uma unica na tela
 void imprimeMesa(TMesa mesa);
 
 void imprimeTodosMesa(FILE *in);
 
+//adiciona na mesa o codigo de mais um pedido realizado
+void fazPedidoMesa(FILE *out , TMesa *m, int cod);
+
 //Faz a leitura e calcula a divida de todos os pedidos feitos na mesa 
-void LePedidosDaMesa(FILE *log, FILE *pedidos, TMesa *m);
+//void LePedidosDaMesa(FILE *log, FILE *pedidos, TMesa *m);
 
 #endif

@@ -10,7 +10,7 @@
 #include "../Entidades/mesas.h"
 #include "../Entidades/pedidos.h"
 
-void salva_no_log(FILE *log, int comp, int begin, char s[]);
+void salva_no_log(FILE *log, int comp, double time, char s[]);
 
 int tamanho_arquivo(FILE *arq);
 

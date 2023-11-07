@@ -1,5 +1,0 @@
-Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 8	Tempo: 0
-Tipo de busca: Busca Sequencial Mesa - Nao Encontrado		Comparacoes: 10	Tempo: 0
-Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 8	Tempo: 0
-Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 8	Tempo: 0
-Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 8	Tempo: 0
