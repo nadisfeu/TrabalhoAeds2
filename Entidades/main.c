@@ -11,8 +11,8 @@
 int main()
 {
     FILE *mesas, *pedidos, *funcionarios, *log;
-    if ((mesas = fopen("../output/mesas.dat", "w+b")) == NULL || (pedidos = fopen("../output/pedidos.dat", "a+b")) == NULL 
-    || (funcionarios = fopen("../output/funcionarios.dat", "w+b")) == NULL || (log= fopen("../output/log.txt", "a+")) == NULL)
+    if ((mesas = fopen("mesas.dat", "w+b")) == NULL || (pedidos = fopen("pedidos.dat", "ab")) == NULL 
+    || (funcionarios = fopen("funcionarios.dat", "w+b")) == NULL || (log= fopen("log.txt", "a+")) == NULL)
     {
         printf("erro ao abrir");
         exit(1);
@@ -29,7 +29,8 @@ int main()
         printf("aa");
         imprimeMesa(*m); */
 
-        int qntMesas = 50;
+        int qntMesas = 10;
+        TMesa *mesa;
      
         criarBase(mesas, qntMesas,"mesa");
         imprimeTodosMesa(mesas);
@@ -45,8 +46,24 @@ int main()
         adicionaPedido( pedidos, "cha", 21, 12.2);
         imprimeTodosPedido( pedidos);
 
-        BuscaSequencialMesa(log, mesas, 2, 10);
-        BuscaSequencial(log,funcionarios,3,4);
+        mesa = BuscaSequencialMesa(log, mesas, 8, qntMesas);
+        imprimeMesa(*mesa);
+        fazPedidoMesa(mesas, mesa, 33);
+        system("PAUSE");
+        system("cls");
+        imprimeTodosMesa(mesas);
+        //mesa = BuscaSequencialMesa(log, mesas, 8, qntMesas);
+        system("PAUSE");
+        system("cls");
+        fazPedidoMesa(mesas, mesa, 45);
+        system("PAUSE");
+        system("cls");
+        imprimeTodosMesa(mesas);
+        fazPedidoMesa(mesas, mesa, 4);
+        fazPedidoMesa(mesas, mesa, 78);
+        fazPedidoMesa(mesas, mesa, 5);
+        imprimeTodosMesa(mesas);
+        //BuscaSequencial(log,funcionarios,3,4);
         return 0;
     }
 }

@@ -21,7 +21,7 @@ TPedido *Pedido(int cod,char nome[], double valor){
     return Pedido;
 }
 
-//salva os Pedidoionarios dentro do arquivo
+//salva os Pedidos dentro do arquivo
 void salvaPedido(TPedido *Pedido, FILE *out){
 
         fwrite(&Pedido->cod, sizeof(int),1, out);
