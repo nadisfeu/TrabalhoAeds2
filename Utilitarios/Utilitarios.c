@@ -10,7 +10,7 @@ void salva_no_log(FILE *log, int comp, double time, char s[])
 {
     fprintf(log, "Tipo de busca: %s", s);
     fprintf(log, "\tComparacoes: %d\t", comp);
-    fprintf(log, "Tempo: %f\n", time);
+    fprintf(log, "Tempo: %.2f\n", time);
 }
 
 int tamanho_arquivo(FILE *arq)
@@ -37,7 +37,7 @@ void criarBase(FILE *out, int tam, char *tipo)
     for (int i = 0; i < tam; i++)
         vet[i] = i + 1;
 
-    // shuffle(vet,tam,(tam*1)/100);
+    shuffle(vet,tam,(tam*1)/100);
 
     if (strcmp(tipo, "mesa") == 0)
     {

@@ -1,0 +1,35 @@
+Teste com arquivos de Base 100, Busca Sequencial: 
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 81	Tempo: 0.000000
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 83	Tempo: 0.001000
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 39	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 66	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Nao Encontrado		Comparacoes: 100	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 5	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 94	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 26	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 95	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 43	Tempo: 0.00
+
+Teste com arquivos de Base 1000, Busca Sequencial: 
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 612	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 955	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 220	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 642	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Nao Encontrado		Comparacoes: 1000	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 99	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 525	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 173	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 259	Tempo: 0.00
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 101	Tempo: 0.00
+
+Teste com arquivos de Base 100000, Busca Sequencial: 
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 72755	Tempo: 0.22
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 80460	Tempo: 0.26
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 68771	Tempo: 0.20
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 44940	Tempo: 0.14
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 57358	Tempo: 0.16
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 79961	Tempo: 0.22
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 66866	Tempo: 0.24
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 62166	Tempo: 0.19
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 88094	Tempo: 0.26
+Tipo de busca: Busca Sequencial Mesa - Encontrado		Comparacoes: 97419	Tempo: 0.28

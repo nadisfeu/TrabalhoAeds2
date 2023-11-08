@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 
+
 // #include "Entidades/Headers/mesas.h"
 #include "mesas.c"
 #include "funcionario.c"
@@ -19,30 +20,27 @@ int main()
     }
     else
     {
-    /*  FILE *a;
-        a = fopen("teste.dat","w+b");
-        TMesa *m;
-        m = mesa(123, 2, 1550);
-        salvaMesa(m, a);
-        rewind(a);
-        m = leMesa(a);
-        printf("aa");
-        imprimeMesa(*m); */
-
-        int qntMesas = 10;
+        int cod[10] = {23, 15, 67, 89, 1800,45, 3,17,21, 14};
+        int qntMesas = 100000;
         TMesa *mesa;
-     
+
+        fprintf(log, "\nTeste com arquivos de Base %d, Busca Sequencial: \n", qntMesas);
+
         criarBase(mesas, qntMesas,"mesa");
-        imprimeTodosMesa(mesas);
+        //imprimeTodosMesa(mesas);
         
         criarBase(funcionarios, qntMesas/4, "funcionario");
-        imprimeTodos(funcionarios);
+        //imprimeTodos(funcionarios);
+
+        for (int i = 0; i < 10; i++)
+        {
+            BuscaSequencialMesa(log,mesas,cod[i],qntMesas);
+        }
+        
 
         /*
         criarBase(pedidos,6,"pedido");
         imprimeTodosPedido(pedidos);
-        */
-        
         adicionaPedido( pedidos, "cha", 21, 12.2);
         imprimeTodosPedido( pedidos);
 
@@ -64,6 +62,8 @@ int main()
         fazPedidoMesa(mesas, mesa, 5);
         imprimeTodosMesa(mesas);
         //BuscaSequencial(log,funcionarios,3,4);
+        */
         return 0;
+
     }
 }
