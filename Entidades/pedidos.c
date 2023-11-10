@@ -73,3 +73,10 @@ void adicionaPedido(FILE *out,char nome[],int cod, double valor){
     salvaPedido(p,out);
     free(p);
 }
+
+void SalvaTodosOsPedidos(FILE *out){
+    adicionaPedido(out,"Cerveja Long Neck", 1, 7.34);
+    adicionaPedido(out, "Vinho Rose", 2, 22.5);
+    adicionaPedido(out, "Vinho Tinto", 3, 18 );
+    
+}

@@ -21,7 +21,7 @@ int main()
     else
     {
         int cod[10] = {23, 15, 67, 89, 1800,45, 3,17,21, 14};
-        int qntMesas = 100000;
+        int qntMesas = 100;
         TMesa *mesa;
 
         fprintf(log, "\nTeste com arquivos de Base %d, Busca Sequencial: \n", qntMesas);
@@ -37,6 +37,7 @@ int main()
             BuscaSequencialMesa(log,mesas,cod[i],qntMesas);
         }
         
+
 
         /*
         criarBase(pedidos,6,"pedido");
