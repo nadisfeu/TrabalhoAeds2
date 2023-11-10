@@ -12,7 +12,7 @@
 int main()
 {
     FILE *mesas, *pedidos, *funcionarios, *log;
-    if ((mesas = fopen("mesas.dat", "w+b")) == NULL || (pedidos = fopen("pedidos.dat", "ab")) == NULL 
+    if ((mesas = fopen("mesas.dat", "w+b")) == NULL || (pedidos = fopen("pedidos.dat", "w+b")) == NULL 
     || (funcionarios = fopen("funcionarios.dat", "w+b")) == NULL || (log= fopen("log.txt", "a+")) == NULL)
     {
         printf("erro ao abrir");
@@ -21,7 +21,7 @@ int main()
     else
     {
         int cod[10] = {23, 15, 67, 89, 1800,45, 3,17,21, 14};
-        int qntMesas = 100;
+        int qntMesas = 10;
         TMesa *mesa;
 
         fprintf(log, "\nTeste com arquivos de Base %d, Busca Sequencial: \n", qntMesas);
@@ -31,16 +31,17 @@ int main()
         
         criarBase(funcionarios, qntMesas/4, "funcionario");
         //imprimeTodos(funcionarios);
+        imprimeTodosMesa(mesas);
 
-        for (int i = 0; i < 10; i++)
-        {
-            BuscaSequencialMesa(log,mesas,cod[i],qntMesas);
-        }
+        SalvaTodosOsPedidos(pedidos);
+        imprimeTodosPedido(pedidos);
         
+        mesa = BuscaBinariaMesa(log,3,mesas,0,9);
+        fazPedidoMesa(log,mesas,pedidos,mesa,2);
+        imprimeTodosMesa(mesas);
 
 
         /*
-        criarBase(pedidos,6,"pedido");
         imprimeTodosPedido(pedidos);
         adicionaPedido( pedidos, "cha", 21, 12.2);
         imprimeTodosPedido( pedidos);

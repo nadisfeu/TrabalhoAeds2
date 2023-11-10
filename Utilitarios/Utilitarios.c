@@ -197,6 +197,7 @@ TFunc *BuscaBinariaFuncionario(FILE *log, int chave, FILE *in, int inicio, int f
 
 TMesa *BuscaBinariaMesa(FILE *log, int chave, FILE *in, int inicio, int fim)
 {
+    rewind(in);
     TMesa *f = NULL;
     int cod = -1;
     time_t begin = time(NULL);
@@ -205,8 +206,8 @@ TMesa *BuscaBinariaMesa(FILE *log, int chave, FILE *in, int inicio, int fim)
     while (inicio <= fim && cod != chave)
     {
         int meio = trunc((inicio + fim) / 2);
-        fseek(in, (meio - 1) * tamanho_registro(), SEEK_SET);
-        f = le(in);
+        fseek(in, (meio - 1) * tamanho_registro_Mesa(), SEEK_SET);
+        f = leMesa(in);
         cod = f->cod;
 
         if (f)
@@ -238,18 +239,21 @@ TMesa *BuscaBinariaMesa(FILE *log, int chave, FILE *in, int inicio, int fim)
     }
 }
 
-TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in, int inicio, int fim)
+TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in)
 {
+    rewind(in);
     TPedido *f = NULL;
     int cod = -1;
     time_t begin = time(NULL);
     int comp = 0;
+    int inicio = inicioPedidos;
+    int fim = fimPedidos;
 
     while (inicio <= fim && cod != chave)
     {
         int meio = trunc((inicio + fim) / 2);
-        fseek(in, (meio - 1) * tamanho_registro(), SEEK_SET);
-        f = le(in);
+        fseek(in, (meio - 1) * tamanho_registro_Pedido(), SEEK_SET);
+        f = lePedido(in);
         cod = f->cod;
 
         if (f)
@@ -279,4 +283,34 @@ TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in, int inicio, int fim)
         salva_no_log(log, comp, (end - begin), "BuscaBinaria-Pedido-Nao_Encontrado");
         return NULL;
     }
+}
+
+void fazPedidoMesa(FILE *log,FILE *out,FILE *pedidos, TMesa *m, int cod)
+{
+    TPedido *pedido;
+    //falta somar o valor do pedido na mesas
+    if ((pedido = BuscaBinariaPedido(log,cod,pedidos)) == NULL)
+    {
+        printf("O pedido de codigo %d nao existe", cod);
+        return;
+    }
+    
+    
+    rewind(out);
+    TMesa *mesa;
+
+    while ((mesa=leMesa(out)) != NULL) {
+        if (mesa->cod == m->cod) {
+            // Encontramos o registro desejado
+            m->pedidos[m->numeroPedidos] = cod;
+            m->numeroPedidos = m->numeroPedidos+1;
+            m->divida += pedido->valor;
+            imprimeMesa(*m);
+            fseek(out, -tamanho_registro_Mesa(), SEEK_CUR);
+            fwrite(m, tamanho_registro_Mesa(), 1, out);
+            printf("Pedido realizado com sucesso!\n");
+            break; // Sair do loop
+        }
+    }
+    free(mesa);
 }

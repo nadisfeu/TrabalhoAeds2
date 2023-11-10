@@ -86,27 +86,6 @@ void imprimeTodosMesa(FILE *in)
     system("cls");
 }
 
-void fazPedidoMesa(FILE *out , TMesa *m, int cod)
-{
-    //falta somar o valor do pedido na mesas
-    
-    rewind(out);
-    TMesa *mesa;
-
-    while ((mesa=leMesa(out)) != NULL) {
-        if (mesa->cod == m->cod) {
-            // Encontramos o registro desejado
-            m->pedidos[m->numeroPedidos] = cod;
-            m->numeroPedidos = m->numeroPedidos+1;
-            imprimeMesa(*m);
-            fseek(out, -tamanho_registro_Mesa(), SEEK_CUR);
-            fwrite(m, tamanho_registro_Mesa(), 1, out);
-            printf("Pedido realizado com sucesso!\n");
-            break; // Sair do loop
-        }
-    }
-    free(mesa);
-}
 
 /*
 void LePedidosDaMesa(FILE *log, FILE *pedidos, TMesa *m)

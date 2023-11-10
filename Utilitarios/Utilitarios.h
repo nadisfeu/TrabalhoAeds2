@@ -33,6 +33,9 @@ TFunc *BuscaBinariaFuncionario(FILE *log, int chave, FILE *in, int inicio, int f
 //realiza a busca binaria por uma mesa 
 TMesa *BuscaBinariaMesa(FILE *log, int chave, FILE *in, int inicio, int fim);
 //Realiza a busca binaria por um Pedido
-TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in, int inicio, int fim);
+TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in);
+
+//adiciona na mesa o codigo de mais um pedido realizado
+void fazPedidoMesa(FILE *log,FILE *out,FILE *pedidos, TMesa *m, int cod);
 
 #endif

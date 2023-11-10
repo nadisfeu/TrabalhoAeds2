@@ -33,9 +33,6 @@ void imprimeMesa(TMesa mesa);
 
 void imprimeTodosMesa(FILE *in);
 
-//adiciona na mesa o codigo de mais um pedido realizado
-void fazPedidoMesa(FILE *out , TMesa *m, int cod);
-
 //Faz a leitura e calcula a divida de todos os pedidos feitos na mesa 
 //void LePedidosDaMesa(FILE *log, FILE *pedidos, TMesa *m);
 
