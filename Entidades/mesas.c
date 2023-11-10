@@ -88,8 +88,6 @@ void imprimeTodosMesa(FILE *in)
 
 void fazPedidoMesa(FILE *out , TMesa *m, int cod)
 {
-    //m->pedidos[m->numeroPedidos] = cod;
-    //m->numeroPedidos++;
     //falta somar o valor do pedido na mesas
     
     rewind(out);

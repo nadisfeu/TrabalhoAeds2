@@ -37,7 +37,7 @@ void criarBase(FILE *out, int tam, char *tipo)
     for (int i = 0; i < tam; i++)
         vet[i] = i + 1;
 
-    shuffle(vet,tam,(tam*1)/100);
+    //shuffle(vet,tam,(tam*10)/100);
 
     if (strcmp(tipo, "mesa") == 0)
     {
@@ -151,8 +151,8 @@ TPedido *BuscaSequencialPedido(FILE *log, FILE *out, int cod, int qnt)
     salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Pedido - Nao Encontrado\t");
     return geral;
 }
-/*
-TFunc *BuscaBinaria(FILE *log, int chave, FILE *in, int inicio, int fim)
+
+TFunc *BuscaBinariaFuncionario(FILE *log, int chave, FILE *in, int inicio, int fim)
 {
     TFunc *f = NULL;
     int cod = -1;
@@ -194,4 +194,89 @@ TFunc *BuscaBinaria(FILE *log, int chave, FILE *in, int inicio, int fim)
         return NULL;
     }
 }
-*/
+
+TMesa *BuscaBinariaMesa(FILE *log, int chave, FILE *in, int inicio, int fim)
+{
+    TMesa *f = NULL;
+    int cod = -1;
+    time_t begin = time(NULL);
+    int comp = 0;
+
+    while (inicio <= fim && cod != chave)
+    {
+        int meio = trunc((inicio + fim) / 2);
+        fseek(in, (meio - 1) * tamanho_registro(), SEEK_SET);
+        f = le(in);
+        cod = f->cod;
+
+        if (f)
+        {
+            if (cod > chave)
+            {
+                comp++;
+                fim = meio - 1;
+            }
+            else
+            {
+                comp++;
+                inicio = meio + 1;
+            }
+        }
+    }
+
+    if (cod == chave)
+    {
+        time_t end = time(NULL);
+        salva_no_log(log, comp, (end - begin), "BuscaBinaria-Mesa-Encontrado");
+        return f;
+    }
+    else
+    {
+        time_t end = time(NULL);
+        salva_no_log(log, comp, (end - begin), "BuscaBinaria-Mesa-Nao_Encontrado");
+        return NULL;
+    }
+}
+
+TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in, int inicio, int fim)
+{
+    TPedido *f = NULL;
+    int cod = -1;
+    time_t begin = time(NULL);
+    int comp = 0;
+
+    while (inicio <= fim && cod != chave)
+    {
+        int meio = trunc((inicio + fim) / 2);
+        fseek(in, (meio - 1) * tamanho_registro(), SEEK_SET);
+        f = le(in);
+        cod = f->cod;
+
+        if (f)
+        {
+            if (cod > chave)
+            {
+                comp++;
+                fim = meio - 1;
+            }
+            else
+            {
+                comp++;
+                inicio = meio + 1;
+            }
+        }
+    }
+
+    if (cod == chave)
+    {
+        time_t end = time(NULL);
+        salva_no_log(log, comp, (end - begin), "BuscaBinaria-Pedido-Encontrado");
+        return f;
+    }
+    else
+    {
+        time_t end = time(NULL);
+        salva_no_log(log, comp, (end - begin), "BuscaBinaria-Pedido-Nao_Encontrado");
+        return NULL;
+    }
+}
