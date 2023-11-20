@@ -32,6 +32,7 @@ TPedido *BuscaSequencialPedido(FILE *log, FILE *out, int cod, int qnt);
 TFunc *BuscaBinariaFuncionario(FILE *log, int chave, FILE *in, int inicio, int fim);
 //realiza a busca binaria por uma mesa 
 TMesa *BuscaBinariaMesa(FILE *log, int chave, FILE *in, int inicio, int fim);
+
 //Realiza a busca binaria por um Pedido
 TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in);
 

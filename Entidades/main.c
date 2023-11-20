@@ -21,7 +21,7 @@ int main()
     else
     {
         int cod[10] = {23, 15, 67, 89, 1800,45, 3,17,21, 14};
-        int qntMesas = 10;
+        int qntMesas = 10000;
         TMesa *mesa;
 
         fprintf(log, "\nTeste com arquivos de Base %d, Busca Sequencial: \n", qntMesas);
@@ -31,15 +31,20 @@ int main()
         
         criarBase(funcionarios, qntMesas/4, "funcionario");
         //imprimeTodos(funcionarios);
-        imprimeTodosMesa(mesas);
+        //imprimeTodosMesa(mesas);
 
         SalvaTodosOsPedidos(pedidos);
-        imprimeTodosPedido(pedidos);
-        
-        mesa = BuscaBinariaMesa(log,3,mesas,0,9);
-        fazPedidoMesa(log,mesas,pedidos,mesa,2);
-        imprimeTodosMesa(mesas);
+        // imprimeTodosPedido(pedidos);
 
+        // mesa = BuscaBinariaMesa(log,3,mesas,1,10);
+        // fazPedidoMesa(log,mesas,pedidos,mesa,2);
+        // imprimeTodosMesa(mesas);
+
+        for (int i = 0; i < 10; i++)
+        {
+            BuscaBinariaMesa(log,cod[i],mesas,1,qntMesas);
+        }
+        
 
         /*
         imprimeTodosPedido(pedidos);

@@ -5,6 +5,8 @@
 
 // #include "Entidades/Headers/mesas.h"
 #include "mesas.h"
+#include "pedidos.h"
+#include "../Utilitarios/Utilitarios.h"
 
 int tamanho_registro_Mesa()
 {
@@ -87,13 +89,14 @@ void imprimeTodosMesa(FILE *in)
 }
 
 
-/*
+
 void LePedidosDaMesa(FILE *log, FILE *pedidos, TMesa *m)
 {
     TPedido *p;
     for (int i = 0; i < (m->numeroPedidos); i++)
     {
-        // coloca uma busca binaria pros pedidos
+        p = BuscaBinariaPedido(log,m->pedidos[i],pedidos);
+        imprimePedido(p);
     }
-}*/
+}
 

@@ -1,4 +1,0 @@
-
-Teste com arquivos de Base 10, Busca Sequencial: 
-Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 4	Tempo: 0.00
-Tipo de busca: BuscaBinaria-Pedido-Encontrado	Comparacoes: 1	Tempo: 0.00

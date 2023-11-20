@@ -1,0 +1,48 @@
+
+Teste com arquivos de Base 10, Busca Sequencial: 
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 3	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 4	Tempo: 0.00
+
+Teste com arquivos de Base 100, Busca Sequencial: 
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 6	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 5	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 7	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 6	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 7	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 7	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 5	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 7	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 5	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 7	Tempo: 0.00
+
+Teste com arquivos de Base 1000, Busca Sequencial: 
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 7	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 6	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 9	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 8	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Nao_Encontrado	Comparacoes: 10	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 10	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 8	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 9	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 9	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 10	Tempo: 0.00
+
+Teste com arquivos de Base 10000, Busca Sequencial: 
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 14	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 13	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 14	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 12	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 11	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 12	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 13	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 13	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 12	Tempo: 0.00
+Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 11	Tempo: 0.00

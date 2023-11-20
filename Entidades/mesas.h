@@ -34,6 +34,6 @@ void imprimeMesa(TMesa mesa);
 void imprimeTodosMesa(FILE *in);
 
 //Faz a leitura e calcula a divida de todos os pedidos feitos na mesa 
-//void LePedidosDaMesa(FILE *log, FILE *pedidos, TMesa *m);
+void LePedidosDaMesa(FILE *log, FILE *pedidos, TMesa *m);
 
 #endif
