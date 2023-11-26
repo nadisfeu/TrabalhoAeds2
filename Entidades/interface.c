@@ -8,7 +8,7 @@ void MSG_MENU()
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU <<<<<<<<<<<<<<<<<<<<<<<<");
     printf("\n\n\t1. Fazer pedido em mesa");
-    printf("  \n\t2. PESQUISAR");
+    printf("  \n\t2. Busca funcionario sequencial (estao desordenados)");
     printf("  \n\t3. EXCLUIR");
     printf("  \n\t4. IMPRIMIR");
     printf("  \n\t5. SAIR");
@@ -17,7 +17,8 @@ void MSG_MENU()
 void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesas)
 {
     TMesa *mesa1;
-    TPedido pedido;
+    TPedido *pedido;
+    TFunc *func;
     int opcao = 0;
     int aux;
     do
@@ -30,6 +31,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
         {
         case 1: // INSERIR PEDIDO EM MESA
             printf("\nEM QUAL MESA DESEJA ADICIONAR O EU PEDIDO?\n");
+            fflush(stdin);
             scanf("%d", &aux);
             mesa1 = BuscaBinariaMesa(log, aux, mesas, (qntMesas - (qntMesas - 1)), qntMesas);
 
@@ -37,6 +39,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
             {
                 imprimeTodosPedido(pedidos);
                 printf("Digite o codigo do pedido que deseja fazer:\n");
+                fflush(stdin);
                 scanf("%d", &aux);
                 fazPedidoMesa(log, mesas, pedidos, mesa1, aux);
                 printf("Pedido feito com sucesso!\n");
@@ -45,18 +48,20 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
             {
                 printf("Digite um codigo de mesa valido!");
             }
+            system("PAUSE");
             break;
-        // case 2: // PESQUISAR
-        //     printf("\nInforme o codigo do pedido que deseja pesquisar: ");
-        //     fflush(stdin);
-        //     scanf("%d", &pedido.cod);
+        case 2: // PESQUISAR
+            printf("\nInforme o codigo do funcionario que deseja pesquisar: ");
+            fflush(stdin);
+            scanf("%d", &aux);
 
-        //     if (Pesquisar(*mesa1, pedido) != NULL)
-        //         printf("\nO pedido pertence mesa!\n\n");
-        //     else
-        //         printf("\nO pedido NAO pertemce a esta mesa!\n\n");
-
-        //     break;
+            func = BuscaSequencial(log,funcionarios,aux,qntMesas/3); 
+            if (func != NULL)
+                imprime(func);
+            else
+                printf("\nO funcionario NAO existe!\n\n");
+            system("PAUSE");
+            break;
         // case 3: // EXCLUIR
         //     printf("\nInforme o codigo do pedido que deseja excluir: ");
         //     scanf("%d", &pedido.cod);

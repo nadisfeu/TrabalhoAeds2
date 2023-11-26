@@ -55,6 +55,7 @@ void criarBase(FILE *out, int tam, char *tipo)
     {
         printf("\nGerando a base de dados de Funcionarios...\n");
         TFunc *f;
+        shuffle(vet,tam,(tam*10)/100);
         for (int i = 0; i < tam; i++)
         {
             f = funcionario(vet[i], "Julio", "889.785.521-09", "22/10/2003", (i + 1) * 1000 + ((i - 1) * 231));

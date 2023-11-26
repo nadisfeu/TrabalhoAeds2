@@ -56,13 +56,13 @@ TFunc *le(FILE *in){
 }
 
 void imprime(TFunc *func){
-    printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+    printf("___________________________________________________________");
     printf("\nFuncionario de codigo: %d\n", func->cod);
     printf("Nome do funcionario: %s\n", func->nome);
     printf("CPF do funcionario: %s\n", func->cpf);
     printf("Data de nascimento: %s\n", func->data_nascimento);
     printf("Salario: %.2f\n", func->salario);
-    printf("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+    printf("___________________________________________________________\n");
 }
 
 //imprime toda a base de dados

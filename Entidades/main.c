@@ -21,14 +21,14 @@ int main()
     }
     else
     {
-        int cod[10] = {23, 15, 67, 89, 1800,45, 3,17,21, 14};
-        int qntMesas = 10;
-        TMesa *mesa;
+        // int cod[10] = {23, 15, 67, 89, 1800,45, 3,17,21, 14};
+        // TMesa *mesa;
 
+        int qntMesas = 30;
         criarBase(mesas, qntMesas,"mesa");
         imprimeTodosMesa(mesas);
         
-        criarBase(funcionarios, qntMesas/4, "funcionario");
+        criarBase(funcionarios, qntMesas/3, "funcionario");
         imprimeTodos(funcionarios);
         
         SalvaTodosOsPedidos(pedidos);
