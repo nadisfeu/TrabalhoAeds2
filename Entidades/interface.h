@@ -10,6 +10,6 @@
 
 void MSG_MENU(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL
 
-void MENU(TMesa *mesa1); // MÓDULO DE MENU
+void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log,int qntMesas); // MÓDULO DE MENU
 
 # endif // INTERFACE_H_INCLUDED

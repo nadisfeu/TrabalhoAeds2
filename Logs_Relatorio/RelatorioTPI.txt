@@ -1,0 +1,17 @@
+Alunos: Fernando Figueredo de Mendonça Neto 21.1.8021
+	Gessica Texeira Bonfim 21.1.8019
+Relatório sobre a busca binária e a busca sequencial
+
+Busca binária
+
+A busca binária é um algoritmo de busca eficiente que funciona em listas ordenadas. Ele divide repetidamente a lista pela metade, comparando o elemento buscado com o elemento no meio da lista. Se o elemento buscado for menor que o elemento do meio, a busca continua na metade esquerda da lista. Se o elemento buscado for maior que o elemento do meio, a busca continua na metade direita da lista. Este processo é repetido até que o elemento buscado seja encontrado ou até que a lista esteja vazia.
+
+Busca sequencial
+
+A busca sequencial é um algoritmo de busca simples que funciona em listas não ordenadas. Ele percorre a lista sequencialmente, comparando o elemento buscado com cada elemento da lista. Se o elemento buscado for encontrado, a busca termina. Se o elemento buscado não for encontrado, a busca continua até que a lista esteja vazia.
+
+Diferenças entre a busca binária e a busca sequencial
+
+A principal diferença entre a busca binária e a busca sequencial é o requisito de que a lista esteja ordenada. A busca binária só pode ser usada em listas ordenadas, enquanto a busca sequencial pode ser usada em listas ordenadas ou não ordenadas.
+
+Outra diferença importante entre as duas buscas é a eficiência. A busca binária é um algoritmo mais eficiente que a busca sequencial. O número de comparações necessárias para encontrar um elemento em uma lista usando a busca binária é proporcional ao logaritmo da altura da lista. Já o número de comparações necessárias para encontrar um elemento em uma lista usando a busca sequencial é proporcional ao tamanho da lista.

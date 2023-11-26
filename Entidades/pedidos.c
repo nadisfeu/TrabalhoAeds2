@@ -53,11 +53,11 @@ TPedido *lePedido(FILE *in)
 
 void imprimePedido(TPedido *Pedido)
 {
-    printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+    printf("___________________________________________________________");
     printf("\nPedido de codigo: %d\n", Pedido->cod);
     printf("Nome de pedidos %s\n", Pedido->nomePedido);
     printf("valor: %.2f\n", Pedido->valor);
-    printf("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+    printf("___________________________________________________________\n");
 }
 
 // imprime toda a base de dados
@@ -75,8 +75,6 @@ void imprimeTodosPedido(FILE *in)
 
     free(Pedido);
 
-    system("pause");
-    system("cls");
 }
 
 void adicionaPedido(FILE *out, char nome[], int cod, double valor)
