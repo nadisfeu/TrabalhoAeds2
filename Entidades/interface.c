@@ -79,13 +79,11 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
         //     imprimeMesa(*mesa1);
 
         //     break;
-        // case 5:
-
-        //     // system("clear");
-        //     system("cls");
-        //     printf("\n\n\n\t >>>>>> MSG: Saindo do MODULO...!!! <<<<<<\n");
-        //     system("PAUSE");
-        //     break;
+        case 5:
+            system("cls");
+            printf("\n\n\n\t >>>>>> MSG: Saindo do MODULO...!!! <<<<<<\n");
+            system("PAUSE");
+            break;
         default:
             // system("clear");
             system("cls");
