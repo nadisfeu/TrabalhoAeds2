@@ -62,7 +62,7 @@ void imprimeMesa(TMesa mesa)
     printf("\nMesa de codigo: %d\n", mesa.cod);
     printf("Numero de Clientes %d\n", mesa.numClientes);
     printf("divida: %.2f\n", mesa.divida);
-    printf("Numero de pedidos: %d ", mesa.numeroPedidos);
+    printf("Numero de pedidos: %d\n", mesa.numeroPedidos);
     printf("Lista de codigo dos pedidos:\t");
     for (int i = 0; i < mesa.numeroPedidos; i++)
         printf("%d\t", mesa.pedidos[i]);
