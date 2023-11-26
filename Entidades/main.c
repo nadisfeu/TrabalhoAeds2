@@ -70,6 +70,7 @@ int main()
         imprimeTodosMesa(mesas);
         //BuscaSequencial(log,funcionarios,3,4);
         */
+        //oi
         return 0;
 
     }
