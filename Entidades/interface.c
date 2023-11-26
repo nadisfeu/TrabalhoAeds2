@@ -7,9 +7,8 @@ void MSG_MENU()
 {
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU <<<<<<<<<<<<<<<<<<<<<<<<");
-    printf("\n\n\t1. ADOCIONAR PEDIDOS A UMA MESA");
-    printf("  \n\t2. BUSCAR FUNCIONARIOS SEUQENCIAL (estao desordenados)");
-    //printf("  \n\t3. EXCLUIR");
+    printf("\n\n\t1. ADICIONAR PEDIDOS A UMA MESA");
+    printf("  \n\t2. BUSCAR FUNCIONARIOS SEQUENCIAL (estao desordenados)");
     printf("  \n\t3. EXIBIR INFORMACOES SOBRE A MESA");
     printf("  \n\t4. SAIR");
 }
@@ -62,18 +61,6 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
                  printf("\nO funcionario NAO existe!\n\n");
              system("PAUSE");
              break;
-        /*case 3: // EXCLUIR
-             printf("\nInforme o codigo do pedido que deseja excluir: ");
-             scanf("%d", &pedido.cod);
-
-             Excluir(mesa1, &pedido);
-
-             if (pedido.cod != -1)
-                 printf("\nItem excluido com sucesso!\n");
-             else
-                 printf("\n >>>>>Nao foi possivel excluir o pedido! Pedido NAO pertence a mesa!!<<<< \n");
-
-             break;*/
          case 3: // IMPRIMIR
              printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA OBTER AS INFORMACOES?\n");
              fflush(stdin);
@@ -84,6 +71,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
              if (mesa1 != NULL)
             {
                imprimeMesa(*mesa1);
+               LePedidosDaMesa(log,pedidos,mesa1);
             }
             else
             {

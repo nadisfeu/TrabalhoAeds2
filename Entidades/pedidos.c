@@ -55,7 +55,7 @@ void imprimePedido(TPedido *Pedido)
 {
     printf("___________________________________________________________");
     printf("\nPedido de codigo: %d\n", Pedido->cod);
-    printf("Nome de pedidos %s\n", Pedido->nomePedido);
+    printf("Nome do pedidoo %s\n", Pedido->nomePedido);
     printf("valor: %.2f\n", Pedido->valor);
     printf("___________________________________________________________\n");
 }

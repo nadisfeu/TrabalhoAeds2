@@ -21,9 +21,6 @@ int main()
     }
     else
     {
-        // int cod[10] = {23, 15, 67, 89, 1800,45, 3,17,21, 14};
-        // TMesa *mesa;
-
         int qntMesas = 30;
         criarBase(mesas, qntMesas,"mesa");
         imprimeTodosMesa(mesas);
@@ -38,7 +35,6 @@ int main()
 
         // fprintf(log, "\nTeste com arquivos de Base %d, Busca Sequencial: \n", qntMesas);
         // //imprimeTodosMesa(mesas);
-
 
         // // mesa = BuscaBinariaMesa(log,3,mesas,1,10);
         // // fazPedidoMesa(log,mesas,pedidos,mesa,2);
