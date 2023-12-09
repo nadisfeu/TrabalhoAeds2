@@ -315,3 +315,61 @@ void fazPedidoMesa(FILE *log,FILE *out,FILE *pedidos, TMesa *m, int cod)
     }
     free(mesa);
 }
+
+void insertionSort(FILE *arq, int tam) {
+    int i;
+    //faz o insertion sort
+    for (int j = 2; j <= tam; j++) {
+        //posiciona o arquivo no registro j
+        fseek(arq, (j-1) * tamanho_registro(), SEEK_SET);
+        TFunc *fj = le(arq);
+        i = j - 1;
+        //posiciona o cursor no registro i
+        fseek(arq, (i-1) * tamanho_registro(), SEEK_SET);
+        TFunc *fi = le(arq);
+        while ((i > 0) && (fi->cod > fj->cod)) {
+            //posiciona o cursor no registro i+1
+            fseek(arq, i * tamanho_registro(), SEEK_SET);
+            salva(fi, arq);
+            i = i - 1;
+            //lê registro i
+            fseek(arq, (i-1) * tamanho_registro(), SEEK_SET);
+            fi = le(arq);
+        }
+        //posiciona cursor no registro i + 1
+        fseek(arq, (i) * tamanho_registro(), SEEK_SET);
+        //salva registro j na posição i
+        salva(fj, arq);
+    }
+    //descarrega o buffer para ter certeza que dados foram gravados
+    fflush(arq);
+}
+
+void insertionSortMesa(FILE *arq, int tam) {
+    int i;
+    //faz o insertion sort
+    for (int j = 2; j <= tam; j++) {
+        //posiciona o arquivo no registro j
+        fseek(arq, (j-1) * tamanho_registro_Mesa(), SEEK_SET);
+        TFunc *fj = le(arq);
+        i = j - 1;
+        //posiciona o cursor no registro i
+        fseek(arq, (i-1) * tamanho_registro_Mesa(), SEEK_SET);
+        TFunc *fi = le(arq);
+        while ((i > 0) && (fi->cod > fj->cod)) {
+            //posiciona o cursor no registro i+1
+            fseek(arq, i * tamanho_registro_Mesa(), SEEK_SET);
+            salva(fi, arq);
+            i = i - 1;
+            //lê registro i
+            fseek(arq, (i-1) * tamanho_registro_Mesa(), SEEK_SET);
+            fi = le(arq);
+        }
+        //posiciona cursor no registro i + 1
+        fseek(arq, (i) * tamanho_registro_Mesa(), SEEK_SET);
+        //salva registro j na posição i
+        salva(fj, arq);
+    }
+    //descarrega o buffer para ter certeza que dados foram gravados
+    fflush(arq);
+}

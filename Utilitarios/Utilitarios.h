@@ -39,4 +39,12 @@ TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in);
 //adiciona na mesa o codigo de mais um pedido realizado
 void fazPedidoMesa(FILE *log,FILE *out,FILE *pedidos, TMesa *m, int cod);
 
+
+//METODOS DE ORDENCAO
+
+//Função insertion sort em disco para os funcionarios.
+void insertionSort(FILE *arq, int tam);
+
+//Função insertion sort em disco para as mesas.
+void insertionSortMesa(FILE *arq, int tam);
 #endif

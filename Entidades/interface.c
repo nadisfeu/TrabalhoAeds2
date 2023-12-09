@@ -16,10 +16,13 @@ void MSG_MENU()
 void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesas)
 {
     TMesa *mesa1;
-    TPedido *pedido;
+    // TPedido *pedido;
     TFunc *func;
     int opcao = 0;
     int aux;
+
+    //Ordena os funcionarios usando a tecnica de insertions sort
+    insertionSort(funcionarios, qntMesas/3);
     do
     {
         MSG_MENU();
@@ -50,28 +53,29 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
             system("PAUSE");
             break;
         case 2: // PESQUISAR
-             printf("\nInforme o codigo do funcionario que deseja pesquisar: ");
-             fflush(stdin);
-             scanf("%d", &aux);
+            printf("\nInforme o codigo do funcionario que deseja pesquisar: ");
+            fflush(stdin);
+            scanf("%d", &aux);
 
-             func = BuscaSequencial(log,funcionarios,aux,qntMesas/3); 
-             if (func != NULL)
-                 imprime(func);
-             else
-                 printf("\nO funcionario NAO existe!\n\n");
-             system("PAUSE");
-             break;
-         case 3: // IMPRIMIR
-             printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA OBTER AS INFORMACOES?\n");
-             fflush(stdin);
-             scanf("%d", &aux);
-             mesa1 = BuscaBinariaMesa(log, aux, mesas, (qntMesas - (qntMesas - 1)), qntMesas);
-             printf("\n\n\t >>>>>> IMPRIMINDO AS INFORMACOES DA MESA!! <<<<<<");
+            func = BuscaSequencial(log, funcionarios, aux, qntMesas / 3);
 
-             if (mesa1 != NULL)
+            if (func != NULL)
+                imprime(func);
+            else
+                printf("\nO funcionario NAO existe!\n\n");
+            system("PAUSE");
+            break;
+        case 3: // IMPRIMIR
+            printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA OBTER AS INFORMACOES:");
+            fflush(stdin);
+            scanf("%d", &aux);
+            mesa1 = BuscaBinariaMesa(log, aux, mesas, (qntMesas - (qntMesas - 1)), qntMesas);
+            printf("\n\t >>>>>> IMPRIMINDO AS INFORMACOES DA MESA!! <<<<<<\n");
+
+            if (mesa1 != NULL)
             {
-               imprimeMesa(*mesa1);
-               LePedidosDaMesa(log,pedidos,mesa1);
+                imprimeMesa(*mesa1);
+                LePedidosDaMesa(log, pedidos, mesa1);
             }
             else
             {
@@ -79,7 +83,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
             }
             system("PAUSE");
 
-             break;
+            break;
         case 4:
             system("cls");
             printf("\n\n\n\t >>>>>> MSG: Saindo do MODULO...!!! <<<<<<\n");
