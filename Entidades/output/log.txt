@@ -33,3 +33,4 @@ Tipo de busca: BuscaBinaria-Mesa-Encontrado	Comparacoes: 4	Tempo: 0.00
 Tipo de busca: BuscaBinaria-Pedido-Encontrado	Comparacoes: 2	Tempo: 0.00
 Tipo de busca: BuscaBinaria-Pedido-Encontrado	Comparacoes: 2	Tempo: 0.00
 Tipo de busca: Busca Sequencial Funcionario - Encontrado		Comparacoes: 2	Tempo: 0.00
+Tipo de busca: Busca Sequencial Funcionario - Encontrado		Comparacoes: 2	Tempo: 0.00
