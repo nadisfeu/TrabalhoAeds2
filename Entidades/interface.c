@@ -21,8 +21,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
     int opcao = 0;
     int aux;
 
-    //Ordena os funcionarios usando a tecnica de insertions sort
-    insertionSort(funcionarios, qntMesas/3);
+    
     do
     {
         MSG_MENU();

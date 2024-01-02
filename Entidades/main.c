@@ -19,18 +19,29 @@ int main()
     }
     else
     {
-        int qntMesas = 30;
+        int qntMesas = 300;
         criarBase(mesas, qntMesas, "mesa");
-        imprimeTodosMesa(mesas);
+        //imprimeTodosMesa(mesas);
 
         criarBase(funcionarios, qntMesas / 3, "funcionario");
-        imprimeTodos(funcionarios);
-
-        SalvaTodosOsPedidos(pedidos);
-        imprimeTodosPedido(pedidos);
-
-        MENU(mesas, pedidos, funcionarios, log, qntMesas);
+        //imprimeTodos(funcionarios);
         
+        selecao_subst(funcionarios);
+
+
+        // SalvaTodosOsPedidos(pedidos);
+        // imprimeTodosPedido(pedidos);
+
+        // Ordena os funcionarios usando a  tecnica de insertions sort
+        //printf("\nOrdenando funcionarios por Insertionsort\n");
+        //insertionSort(funcionarios, qntMesas / 3);
+        //imprimeTodos(funcionarios);
+
+        //printf("Ordenando funcionarios por Insertionsort");
+        //insertionSortMesa(mesas, qntMesas);
+        //imprimeTodosMesa(mesas);
+
+        // MENU(mesas, pedidos, funcionarios, log, qntMesas);
 
         fclose(pedidos);
         fclose(mesas);

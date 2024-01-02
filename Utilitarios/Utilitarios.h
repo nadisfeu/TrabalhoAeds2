@@ -10,6 +10,10 @@
 #include "../Entidades/mesas.h"
 #include "../Entidades/pedidos.h"
 
+const int qntReg = 10;
+
+
+
 void salva_no_log(FILE *log, int comp, double time, char s[]);
 
 int tamanho_arquivo(FILE *arq);
@@ -47,4 +51,10 @@ void insertionSort(FILE *arq, int tam);
 
 //Função insertion sort em disco para as mesas.
 void insertionSortMesa(FILE *arq, int tam);
+
+//seleção por substituição para os funcionarios
+// entrada: 
+// arquivo - o arquivo principal
+// qntReg - quantidade de registros que irão ser salvos no vetor memoria para a ordenação parcial 
+void selecao_subst(FILE *arq);
 #endif

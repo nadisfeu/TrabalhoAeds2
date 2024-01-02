@@ -37,7 +37,7 @@ void criarBase(FILE *out, int tam, char *tipo)
     for (int i = 0; i < tam; i++)
         vet[i] = i + 1;
 
-    //shuffle(vet,tam,(tam*10)/100);
+    shuffle(vet, tam, (tam * 10) / 100);
 
     if (strcmp(tipo, "mesa") == 0)
     {
@@ -55,7 +55,7 @@ void criarBase(FILE *out, int tam, char *tipo)
     {
         printf("\nGerando a base de dados de Funcionarios...\n");
         TFunc *f;
-        shuffle(vet,tam,(tam*10)/100);
+        shuffle(vet, tam, (tam * 10) / 100);
         for (int i = 0; i < tam; i++)
         {
             f = funcionario(vet[i], "Julio", "889.785.521-09", "22/10/2003", (i + 1) * 1000 + ((i - 1) * 231));
@@ -82,7 +82,7 @@ void criarBase(FILE *out, int tam, char *tipo)
 
 TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt)
 {
-    clock_t begin,end;
+    clock_t begin, end;
     begin = clock();
     int comp = 0;
 
@@ -97,18 +97,18 @@ TFunc *BuscaSequencial(FILE *log, FILE *out, int cod, int qnt)
         if (geral->cod == cod)
         {
             end = clock();
-            salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Funcionario - Encontrado\t");
+            salva_no_log(log, comp, (double)(end - begin) / CLOCKS_PER_SEC, "Busca Sequencial Funcionario - Encontrado\t");
             return geral;
         }
     }
     end = clock();
-    salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Funcionario - Nao Encontrado\t");
+    salva_no_log(log, comp, (double)(end - begin) / CLOCKS_PER_SEC, "Busca Sequencial Funcionario - Nao Encontrado\t");
     return geral;
 }
 
 TMesa *BuscaSequencialMesa(FILE *log, FILE *out, int cod, int qnt)
 {
-    clock_t begin,end;
+    clock_t begin, end;
     begin = clock();
     int comp = 0;
     TMesa *geral = (TMesa *)malloc(sizeof(TMesa));
@@ -120,19 +120,19 @@ TMesa *BuscaSequencialMesa(FILE *log, FILE *out, int cod, int qnt)
         if (geral->cod == cod)
         {
             end = clock();
-            salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Mesa - Encontrado\t");
+            salva_no_log(log, comp, (double)(end - begin) / CLOCKS_PER_SEC, "Busca Sequencial Mesa - Encontrado\t");
             return geral;
         }
     }
     end = clock();
-    salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Mesa - Nao Encontrado\t");
+    salva_no_log(log, comp, (double)(end - begin) / CLOCKS_PER_SEC, "Busca Sequencial Mesa - Nao Encontrado\t");
     return geral;
 }
 
 TPedido *BuscaSequencialPedido(FILE *log, FILE *out, int cod, int qnt)
 {
     int comp = 0;
-    clock_t begin,end;
+    clock_t begin, end;
     begin = clock();
     TPedido *geral = (TPedido *)malloc(sizeof(TPedido));
 
@@ -144,12 +144,12 @@ TPedido *BuscaSequencialPedido(FILE *log, FILE *out, int cod, int qnt)
         if (geral->cod == cod)
         {
             end = clock();
-            salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Pedido - Encontrado\t");
+            salva_no_log(log, comp, (double)(end - begin) / CLOCKS_PER_SEC, "Busca Sequencial Pedido - Encontrado\t");
             return geral;
         }
     }
     end = clock();
-    salva_no_log(log, comp, (double)(end-begin)/CLOCKS_PER_SEC, "Busca Sequencial Pedido - Nao Encontrado\t");
+    salva_no_log(log, comp, (double)(end - begin) / CLOCKS_PER_SEC, "Busca Sequencial Pedido - Nao Encontrado\t");
     return geral;
 }
 
@@ -286,25 +286,26 @@ TPedido *BuscaBinariaPedido(FILE *log, int chave, FILE *in)
     }
 }
 
-void fazPedidoMesa(FILE *log,FILE *out,FILE *pedidos, TMesa *m, int cod)
+void fazPedidoMesa(FILE *log, FILE *out, FILE *pedidos, TMesa *m, int cod)
 {
     TPedido *pedido;
-    //falta somar o valor do pedido na mesas
-    if ((pedido = BuscaBinariaPedido(log,cod,pedidos)) == NULL)
+    // falta somar o valor do pedido na mesas
+    if ((pedido = BuscaBinariaPedido(log, cod, pedidos)) == NULL)
     {
         printf("O pedido de codigo %d nao existe", cod);
         return;
     }
-    
-    
+
     rewind(out);
     TMesa *mesa;
 
-    while ((mesa=leMesa(out)) != NULL) {
-        if (mesa->cod == m->cod) {
+    while ((mesa = leMesa(out)) != NULL)
+    {
+        if (mesa->cod == m->cod)
+        {
             // Encontramos o registro desejado
             m->pedidos[m->numeroPedidos] = cod;
-            m->numeroPedidos = m->numeroPedidos+1;
+            m->numeroPedidos = m->numeroPedidos + 1;
             m->divida += pedido->valor;
             imprimeMesa(*m);
             fseek(out, -tamanho_registro_Mesa(), SEEK_CUR);
@@ -316,60 +317,153 @@ void fazPedidoMesa(FILE *log,FILE *out,FILE *pedidos, TMesa *m, int cod)
     free(mesa);
 }
 
-void insertionSort(FILE *arq, int tam) {
+void insertionSort(FILE *arq, int tam)
+{
     int i;
-    //faz o insertion sort
-    for (int j = 2; j <= tam; j++) {
-        //posiciona o arquivo no registro j
-        fseek(arq, (j-1) * tamanho_registro(), SEEK_SET);
+    // faz o insertion sort
+    for (int j = 2; j <= tam; j++)
+    {
+        // posiciona o arquivo no registro j
+        fseek(arq, (j - 1) * tamanho_registro(), SEEK_SET);
         TFunc *fj = le(arq);
         i = j - 1;
-        //posiciona o cursor no registro i
-        fseek(arq, (i-1) * tamanho_registro(), SEEK_SET);
+        // posiciona o cursor no registro i
+        fseek(arq, (i - 1) * tamanho_registro(), SEEK_SET);
         TFunc *fi = le(arq);
-        while ((i > 0) && (fi->cod > fj->cod)) {
-            //posiciona o cursor no registro i+1
+        while ((i > 0) && (fi->cod > fj->cod))
+        {
+            // posiciona o cursor no registro i+1
             fseek(arq, i * tamanho_registro(), SEEK_SET);
             salva(fi, arq);
             i = i - 1;
-            //lê registro i
-            fseek(arq, (i-1) * tamanho_registro(), SEEK_SET);
+            // lê registro i
+            fseek(arq, (i - 1) * tamanho_registro(), SEEK_SET);
             fi = le(arq);
         }
-        //posiciona cursor no registro i + 1
-        fseek(arq, (i) * tamanho_registro(), SEEK_SET);
-        //salva registro j na posição i
+        // posiciona cursor no registro i + 1
+        fseek(arq, (i)*tamanho_registro(), SEEK_SET);
+        // salva registro j na posição i
         salva(fj, arq);
     }
-    //descarrega o buffer para ter certeza que dados foram gravados
+    // descarrega o buffer para ter certeza que dados foram gravados
     fflush(arq);
 }
 
-void insertionSortMesa(FILE *arq, int tam) {
+void insertionSortMesa(FILE *arq, int tam)
+{
     int i;
-    //faz o insertion sort
-    for (int j = 2; j <= tam; j++) {
-        //posiciona o arquivo no registro j
-        fseek(arq, (j-1) * tamanho_registro_Mesa(), SEEK_SET);
+    // faz o insertion sort
+    for (int j = 2; j <= tam; j++)
+    {
+        // posiciona o arquivo no registro j
+        fseek(arq, (j - 1) * tamanho_registro_Mesa(), SEEK_SET);
         TFunc *fj = le(arq);
         i = j - 1;
-        //posiciona o cursor no registro i
-        fseek(arq, (i-1) * tamanho_registro_Mesa(), SEEK_SET);
+        // posiciona o cursor no registro i
+        fseek(arq, (i - 1) * tamanho_registro_Mesa(), SEEK_SET);
         TFunc *fi = le(arq);
-        while ((i > 0) && (fi->cod > fj->cod)) {
-            //posiciona o cursor no registro i+1
+        while ((i > 0) && (fi->cod > fj->cod))
+        {
+            // posiciona o cursor no registro i+1
             fseek(arq, i * tamanho_registro_Mesa(), SEEK_SET);
             salva(fi, arq);
             i = i - 1;
-            //lê registro i
-            fseek(arq, (i-1) * tamanho_registro_Mesa(), SEEK_SET);
+            // lê registro i
+            fseek(arq, (i - 1) * tamanho_registro_Mesa(), SEEK_SET);
             fi = le(arq);
         }
-        //posiciona cursor no registro i + 1
-        fseek(arq, (i) * tamanho_registro_Mesa(), SEEK_SET);
-        //salva registro j na posição i
+        // posiciona cursor no registro i + 1
+        fseek(arq, (i)*tamanho_registro_Mesa(), SEEK_SET);
+        // salva registro j na posição i
         salva(fj, arq);
     }
-    //descarrega o buffer para ter certeza que dados foram gravados
+    // descarrega o buffer para ter certeza que dados foram gravados
     fflush(arq);
+}
+
+void selecao_subst(FILE *arq)
+{
+
+    rewind(arq);
+
+    TFunc *funcs[qntReg];
+    TFunc *funcAux = (TFunc *)malloc(sizeof(TFunc));
+    int flags[qntReg];
+    int flag = 0;
+
+    char nomeParticao[20];
+    int qtdParticoes = 0;
+    int substituido;
+
+    FILE *particoes;
+
+    // salvando uma parte do registro em memoria (1) *ok
+    for (int i = 0; i < qntReg; i++)
+    {
+        funcAux = le(arq);
+        funcs[i] = funcAux;
+    }
+
+    while (le(arq) != NULL)
+    {
+        // volta o arquivo em um registro para nãoi ter perda
+        fseek(arq, -tamanho_registro(), SEEK_CUR);
+
+        //(7)
+        // descongela todos os registros
+        for (int i = 0; i < qntReg; i++)
+            flags[i] = 0;
+
+        // cria e abre nova paritcao
+        qtdParticoes++;
+        sprintf(nomeParticao, "particao%i.dat", qtdParticoes);
+        if ((particoes = fopen(nomeParticao, "wb+")) == NULL)
+            printf("Erro criar arquivo de saida\n");
+
+        while (flag == 0)
+        {
+            flag = 1;
+
+            // selecionando a menor chave do registro vetor (2) *ok
+            int menor_numero = funcs[0]->cod;
+
+            // Percorre o vetor e atualiza o menor número se encontrar um valor menor. *ok
+            for (int i = 0; i < qntReg; i++)
+            {
+                if (funcs[i]->cod < menor_numero && flags[i] == 0)
+                {
+                    menor_numero = funcs[i]->cod;
+                    substituido = i;
+                }
+            }
+
+            //(3)
+            salva(funcs[substituido], particoes);
+            imprimeTodos(particoes);
+            
+            
+            // sobreescrevendo o funcionario removido pelo próximo na array(4)
+            funcAux = le(arq);
+            funcs[substituido] = funcAux;
+
+            // congelamento da posição caso o numero seja menor (5)
+            if (funcAux->cod < funcs[substituido]->cod)
+            {
+                flags[substituido] = 1;
+            }
+
+            // verifica se ainda tem algum congelado para (6)
+            // caso não tenha volta pro (2)
+            for (int i = 0; i < qntReg; i++)
+            {
+                printf("%d", flags[i]);
+                if (flags[i] == 1)
+                {
+                    flag = 0;
+                }
+            }
+        }
+        //(7)
+        fclose(particoes);
+    }
 }
