@@ -381,19 +381,22 @@ void insertionSortMesa(FILE *arq, int tam)
     fflush(arq);
 }
 
-void selecao_subst(FILE *arq)
+void selecao_subst(FILE *arq, int qntFunc)
 {
 
     rewind(arq);
 
     TFunc *funcs[qntReg];
     TFunc *funcAux = (TFunc *)malloc(sizeof(TFunc));
+    TFunc *recemGravado = (TFunc *)malloc(sizeof(TFunc));
     int flags[qntReg];
     int flag = 0;
 
     char nomeParticao[20];
     int qtdParticoes = 0;
     int substituido;
+    int menor_numero = 100000000000;
+    int count = 0;
 
     FILE *particoes;
 
@@ -404,10 +407,10 @@ void selecao_subst(FILE *arq)
         funcs[i] = funcAux;
     }
 
-    while (le(arq) != NULL)
+    while (count < qntFunc)
     {
         // volta o arquivo em um registro para nãoi ter perda
-        fseek(arq, -tamanho_registro(), SEEK_CUR);
+        // fseek(arq, -tamanho_registro(), SEEK_CUR);
 
         //(7)
         // descongela todos os registros
@@ -423,10 +426,9 @@ void selecao_subst(FILE *arq)
         while (flag == 0)
         {
             flag = 1;
+            menor_numero = qntFunc + 1;
 
             // selecionando a menor chave do registro vetor (2) *ok
-            int menor_numero = funcs[0]->cod;
-
             // Percorre o vetor e atualiza o menor número se encontrar um valor menor. *ok
             for (int i = 0; i < qntReg; i++)
             {
@@ -437,33 +439,38 @@ void selecao_subst(FILE *arq)
                 }
             }
 
-            //(3)
-            salva(funcs[substituido], particoes);
-            imprimeTodos(particoes);
-            
-            
-            // sobreescrevendo o funcionario removido pelo próximo na array(4)
-            funcAux = le(arq);
-            funcs[substituido] = funcAux;
-
-            // congelamento da posição caso o numero seja menor (5)
-            if (funcAux->cod < funcs[substituido]->cod)
+            if (menor_numero != qntFunc + 1)
             {
-                flags[substituido] = 1;
+
+                recemGravado = funcs[substituido];
+
+                //(3)
+                salva(funcs[substituido], particoes);
+
+                // sobreescrevendo o funcionario removido pelo próximo na array(4)
+                funcAux = le(arq);
+                funcs[substituido] = funcAux;
+                // congelamento da posição caso o numero seja menor (5)
+                if (funcAux->cod < recemGravado->cod)
+                    flags[substituido] = 1;
+                count++;
             }
 
-            // verifica se ainda tem algum congelado para (6)
+            // verifica se ainda tem algum descongelado para (6)
             // caso não tenha volta pro (2)
             for (int i = 0; i < qntReg; i++)
             {
                 printf("%d", flags[i]);
-                if (flags[i] == 1)
+                if (flags[i] == 0)
                 {
                     flag = 0;
                 }
             }
         }
-        //(7)
+        //(7) fecha particao de saida
         fclose(particoes);
     }
+    free(recemGravado);
+    free(funcs);
+    free(funcAux);
 }
