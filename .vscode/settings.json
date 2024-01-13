@@ -2,5 +2,6 @@
     "files.associations": {
         "funcionario.h": "c",
         "string.h": "c"
-    }
+    },
+    "git.ignoreLimitWarning": true
 }

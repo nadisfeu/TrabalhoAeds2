@@ -383,9 +383,8 @@ void insertionSortMesa(FILE *arq, int tam)
 
 void selecao_subst(FILE *arq, int qntFunc)
 {
-
     rewind(arq);
-
+    int qntReg = 10;
     TFunc *funcs[qntReg];
     TFunc *funcAux = (TFunc *)malloc(sizeof(TFunc));
     TFunc *recemGravado = (TFunc *)malloc(sizeof(TFunc));
@@ -395,7 +394,7 @@ void selecao_subst(FILE *arq, int qntFunc)
     char nomeParticao[20];
     int qtdParticoes = 0;
     int substituido;
-    int menor_numero = 100000000000;
+    int menor_numero = qntFunc + 1;
     int count = 0;
 
     FILE *particoes;
@@ -407,10 +406,8 @@ void selecao_subst(FILE *arq, int qntFunc)
         funcs[i] = funcAux;
     }
 
-    while (count < qntFunc)
+    while (count <= qntFunc || feof(arq))
     {
-        // volta o arquivo em um registro para nãoi ter perda
-        // fseek(arq, -tamanho_registro(), SEEK_CUR);
 
         //(7)
         // descongela todos os registros
@@ -422,6 +419,8 @@ void selecao_subst(FILE *arq, int qntFunc)
         sprintf(nomeParticao, "particao%i.dat", qtdParticoes);
         if ((particoes = fopen(nomeParticao, "wb+")) == NULL)
             printf("Erro criar arquivo de saida\n");
+        if (!feof(arq))
+            flag = 0;
 
         while (flag == 0)
         {
@@ -466,7 +465,10 @@ void selecao_subst(FILE *arq, int qntFunc)
                     flag = 0;
                 }
             }
+            if (flag == 1)
+                break;
         }
+        imprimeTodos(particoes);
         //(7) fecha particao de saida
         fclose(particoes);
     }
@@ -474,3 +476,113 @@ void selecao_subst(FILE *arq, int qntFunc)
     free(funcs);
     free(funcAux);
 }
+
+int calcula_particoes(int qntFunc, int tamParticao)
+{
+    return qntFunc / tamParticao + 1;
+}
+
+void selecao_subst2(FILE *arq, int qntFunc)
+{
+    rewind(arq);
+
+    char nomeParticao[20];
+    int qntReg = 10;
+    int qtdParticoes = 0;
+    int i;
+    int c;
+    int flags[qntReg];
+    int substituido;
+    int flag;
+
+    TFunc *funcs[qntReg];
+    TFunc *funcAux = (TFunc *)malloc(sizeof(TFunc));
+    TFunc *recemGravado = (TFunc *)malloc(sizeof(TFunc));
+
+    FILE *particoes;
+
+    // salvando uma parte do registro em memoria (1) *ok
+    for (int i = 0; i < qntReg; i++)
+    {
+        funcAux = le(arq);
+        funcs[i] = funcAux;
+    }
+
+    while (i != qntFunc)
+    {
+        //(7)
+        // descongela todos os registros
+        for (int i = 0; i < qntReg; i++)
+            flags[i] = 0;
+
+        // cria e abre nova paritcao
+        qtdParticoes++;
+        sprintf(nomeParticao, "particao%i.dat", qtdParticoes);
+        if ((particoes = fopen(nomeParticao, "wb+")) == NULL)
+            printf("Erro criar arquivo de saida\n");
+        if (!feof(arq))
+            flag = 0;
+        if (feof(arq))
+            break;
+
+        while (flag == 0)
+        {
+            flag = 1;
+            int menor_numero = qntFunc + 1;
+
+            // selecionando a menor chave do registro vetor (2) *ok
+            // Percorre o vetor e atualiza o menor número se encontrar um valor menor. *ok
+            for (int i = 0; i < qntReg; i++)
+            {
+                if (funcs[i]->cod < menor_numero && flags[i] == 0)
+                {
+                    menor_numero = funcs[i]->cod;
+                    substituido = i;
+                }
+            }
+
+            if (menor_numero != qntFunc + 1)
+            {
+                recemGravado = funcs[substituido];
+
+                //(3)
+                salva(funcs[substituido], particoes);
+                i++;
+
+                // sobreescrevendo o funcionario removido pelo próximo na array(4)
+                funcAux = le(arq);
+                funcs[substituido] = funcAux;
+                // congelamento da posição caso o numero seja menor (5)
+                if (funcAux->cod < recemGravado->cod)
+                    flags[substituido] = 1;
+            }
+
+            // verifica se ainda tem algum descongelado para (6)
+            // caso não tenha volta pro (2)
+            for (int i = 0; i < qntReg; i++)
+            {
+                if (flags[i] == 0)
+                {
+                    flag = 0;
+                }
+            }
+
+            if(flag == 1)
+                break;
+        }
+        imprimeTodos(particoes);
+        //(7) fecha particao de saida
+        fclose(particoes);
+    }
+
+    free(recemGravado);
+    free(funcs);
+    free(funcAux);
+}
+
+/* PARTIÇÕES GERANDO EM QUANTIDADE CORRETA, DESCOBRI PORQUE TÁ SALAVDNO MAIS QUE 10 POR PARTIÇÃO
+
+DIVIDIR O TAMNHO PELA QUANTIDADE DE PARTIÇÕES E JÁ SALVAR NA QUANTIDADE CORRETA, TALVEZ RESOLVA O PROBLEMA
+SABENDO A QUANTIDADE SALVO AS PRIMEIRAS 10 OPERAÇÕES, E AS OUTRAS JÁ SABENDO QUANTOS QUE SERÃO SALVO POR PARTIÇÃO
+
+*/
