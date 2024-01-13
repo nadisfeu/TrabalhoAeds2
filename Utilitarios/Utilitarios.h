@@ -55,9 +55,5 @@ void insertionSortMesa(FILE *arq, int tam);
 // entrada: 
 // arquivo - o arquivo principal
 // qntReg - quantidade de registros que irão ser salvos no vetor memoria para a ordenação parcial 
-void selecao_subst(FILE *arq, int qntFunc);
-
-int calcula_particoes(int qntFunc, int tamParticao);
-
 int selecao_subst2(FILE *arq, int qntFunc);
 #endif

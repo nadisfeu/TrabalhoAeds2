@@ -26,7 +26,7 @@ int main()
         criarBase(funcionarios, qntMesas / 3, "funcionario");
         //imprimeTodos(funcionarios);
         
-        selecao_subst2(funcionarios, qntMesas /3);
+        int qtdParticoes = selecao_subst2(funcionarios, qntMesas /3);
 
 
         // SalvaTodosOsPedidos(pedidos);
