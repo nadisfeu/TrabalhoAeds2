@@ -482,7 +482,7 @@ int calcula_particoes(int qntFunc, int tamParticao)
     return qntFunc / tamParticao + 1;
 }
 
-void selecao_subst2(FILE *arq, int qntFunc)
+int selecao_subst2(FILE *arq, int qntFunc)
 {
     rewind(arq);
 
@@ -578,6 +578,8 @@ void selecao_subst2(FILE *arq, int qntFunc)
     free(recemGravado);
     free(funcs);
     free(funcAux);
+    
+    return qtdParticoes;
 }
 
 /* PARTIÇÕES GERANDO EM QUANTIDADE CORRETA, DESCOBRI PORQUE TÁ SALAVDNO MAIS QUE 10 POR PARTIÇÃO

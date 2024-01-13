@@ -59,5 +59,5 @@ void selecao_subst(FILE *arq, int qntFunc);
 
 int calcula_particoes(int qntFunc, int tamParticao);
 
-void selecao_subst2(FILE *arq, int qntFunc);
+int selecao_subst2(FILE *arq, int qntFunc);
 #endif
