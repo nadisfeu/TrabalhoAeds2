@@ -8,7 +8,7 @@ void MSG_MENU()
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU <<<<<<<<<<<<<<<<<<<<<<<<");
     printf("\n\n\t1. ADICIONAR PEDIDOS A UMA MESA");
-    printf("  \n\t2. BUSCAR FUNCIONARIOS SEQUENCIAL (estao desordenados)");
+    printf("  \n\t2. BUSCAR FUNCIONARIOS SEQUENCIAL NAS PARTICOES");
     printf("  \n\t3. EXIBIR INFORMACOES SOBRE A MESA");
     printf("  \n\t4. SAIR");
 }
@@ -20,8 +20,13 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
     TFunc *func;
     int opcao = 0;
     int aux;
-
+    int c = 1;
+    char* nomeParticao = "particao1.dat";
+    int qtdParticoes;
+    qtdParticoes = selecao_subst2(funcionarios, qntMesas /3);
+    FILE *AUX;
     
+
     do
     {
         MSG_MENU();
@@ -55,13 +60,30 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
             printf("\nInforme o codigo do funcionario que deseja pesquisar: ");
             fflush(stdin);
             scanf("%d", &aux);
+            c = 1;
+            printf("%d", qtdParticoes);
 
-            func = BuscaSequencial(log, funcionarios, aux, qntMesas / 3);
+            while (c != qtdParticoes)
+            {
+                
+                sprintf(nomeParticao, "particao%i.dat", c);
+                if ((AUX = fopen(nomeParticao, "w+b")) == NULL){
+                    printf("Erro criar arquivo de saida\n");
+                    break;
+                }
+                printf("%d", c);
+                imprimeTodos(AUX);
+                func = BuscaSequencial(log, AUX, aux, tamanho_arquivo(AUX));
 
-            if (func != NULL)
-                imprime(func);
-            else
+                if (func != NULL)
+                    imprime(func);
+                else
+                {
+                    c++;
+                    printf("\nO funcionario NAO existe nessa partição!\n\n");
+                }
                 printf("\nO funcionario NAO existe!\n\n");
+            }
             system("PAUSE");
             break;
         case 3: // IMPRIMIR

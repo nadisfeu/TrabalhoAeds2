@@ -10,7 +10,7 @@
 #include "interface.c"
 
 int main()
-{
+{/*
     FILE *mesas, *pedidos, *funcionarios, *log;
     if ((mesas = fopen("mesas.dat", "w+b")) == NULL || (pedidos = fopen("pedidos.dat", "w+b")) == NULL || (funcionarios = fopen("funcionarios.dat", "w+b")) == NULL || (log = fopen("log.txt", "a+")) == NULL)
     {
@@ -19,34 +19,28 @@ int main()
     }
     else
     {
-        int qntMesas = 300;
+       
         criarBase(mesas, qntMesas, "mesa");
         //imprimeTodosMesa(mesas);
 
         criarBase(funcionarios, qntMesas / 3, "funcionario");
         //imprimeTodos(funcionarios);
         
-        int qtdParticoes = selecao_subst2(funcionarios, qntMesas /3);
+ 
+        SalvaTodosOsPedidos(pedidos);
+        //imprimeTodosPedido(pedidos);
 
+        printf("Ordenando mesas por Insertionsort");
+        insertionSortMesa(mesas, qntMesas);
+        imprimeTodosMesa(mesas);
 
-        // SalvaTodosOsPedidos(pedidos);
-        // imprimeTodosPedido(pedidos);
-
-        // Ordena os funcionarios usando a  tecnica de insertions sort
-        //printf("\nOrdenando funcionarios por Insertionsort\n");
-        //insertionSort(funcionarios, qntMesas / 3);
-        //imprimeTodos(funcionarios);
-
-        //printf("Ordenando funcionarios por Insertionsort");
-        //insertionSortMesa(mesas, qntMesas);
-        //imprimeTodosMesa(mesas);
-
-        // MENU(mesas, pedidos, funcionarios, log, qntMesas);
+        MENU(mesas, pedidos, funcionarios, log, qntMesas);
 
         fclose(pedidos);
         fclose(mesas);
         fclose(funcionarios);
+        */
+        int qntMesas = 300;
 
         return 0;
-    }
 }

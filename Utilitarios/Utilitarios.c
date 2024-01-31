@@ -381,7 +381,6 @@ void insertionSortMesa(FILE *arq, int tam)
     fflush(arq);
 }
 
-
 int selecao_subst2(FILE *arq, int qntFunc)
 {
     rewind(arq);
@@ -390,7 +389,6 @@ int selecao_subst2(FILE *arq, int qntFunc)
     int qntReg = 10;
     int qtdParticoes = 0;
     int i;
-    int c;
     int flags[qntReg];
     int substituido;
     int flag;
@@ -451,6 +449,8 @@ int selecao_subst2(FILE *arq, int qntFunc)
 
                 // sobreescrevendo o funcionario removido pelo próximo na array(4)
                 funcAux = le(arq);
+                if(funcAux == NULL)
+                    break;
                 funcs[substituido] = funcAux;
                 // congelamento da posição caso o numero seja menor (5)
                 if (funcAux->cod < recemGravado->cod)
@@ -478,7 +478,6 @@ int selecao_subst2(FILE *arq, int qntFunc)
     free(recemGravado);
     free(funcs);
     free(funcAux);
-
     return qtdParticoes;
 }
 
