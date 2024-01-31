@@ -4,7 +4,8 @@
 //faz o calculo do Hash para o endereço
 int calculaHash(int cod, int tamBase);
 
-
+//cria o hash
+void criaHash(char *nome_do_hash, int tam)
 
 
 

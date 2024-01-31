@@ -8,9 +8,14 @@
 #include "funcionario.c"
 #include "../Utilitarios/Utilitarios.c"
 #include "interface.c"
+#include "../hashExterno/hashExterno.c"
 
 int main()
-{/*
+{
+    int qntMesas = 300;
+    criaHash("hashmap",300-1);
+
+    /*
     FILE *mesas, *pedidos, *funcionarios, *log;
     if ((mesas = fopen("mesas.dat", "w+b")) == NULL || (pedidos = fopen("pedidos.dat", "w+b")) == NULL || (funcionarios = fopen("funcionarios.dat", "w+b")) == NULL || (log = fopen("log.txt", "a+")) == NULL)
     {
@@ -40,7 +45,7 @@ int main()
         fclose(mesas);
         fclose(funcionarios);
         */
-        int qntMesas = 300;
+
 
         return 0;
 }
