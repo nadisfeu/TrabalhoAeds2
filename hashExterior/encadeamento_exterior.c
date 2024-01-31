@@ -12,39 +12,7 @@
 
 void cria_hash(char *nome_arquivo_hash, int m)
 {
-	FILE *hash;
 
-	if (hash = fopen(nome_arquivo_hash, "a+") == NULL)
-    {
-        printf("erro ao abrir");
-        exit(1);
-    }
-    else
-    {
-	// Estamos usando tabela hash de tamanho 7 nos testes
-	// Adicionar 7 compartimentos que nao apontam para ninguem (prox = -1)
-	ListaCompartimentos *tab_hash, *tab_hash_saida;
-
-	tab_hash = cria_compartimentos(7,
-		compartimento_hash(-1),
-		compartimento_hash(-1),
-		compartimento_hash(-1),
-		compartimento_hash(-1),
-		compartimento_hash(-1),
-		compartimento_hash(-1),
-		compartimento_hash(-1));
-
-	//M = 7 conforme definido no cabeçalho desse arquivo
-	cria_hash(nome_arquivo_hash, m);
-
-	tab_hash_saida = le_compartimentos(nome_arquivo_hash);
-
-	ASSERT_EQUAL_CMP(tab_hash, tab_hash_saida, cmp_compartimentos);
-	libera_compartimentos(tab_hash);
-	libera_compartimentos(tab_hash_saida);
-
-
-	}
 	//TODO: criar a tabela hash
 }
 

@@ -3,27 +3,39 @@
 #include <string.h>
 #include <time.h>
 
-#include "lista.h"
+#include "lista.c"
 
-int calculaHash(int cod, int tamBase){
+int calculaHash(int cod, int tamBase)
+{
     return (cod % tamBase);
 }
 
-void criaHash(char *nome_do_hash, int tam){
-    FILE *hash;
-    TLista aux[tam];
+void criaHash(char *nome_do_hash, int tam, FILE *mesas)
+{
+    FILE *hash, *hashCompartimentos;
+    TLista *aux;
+    TLista lista;
+    TMesa mesa;
+    TMesa mesaAux[15];
+    mesa.cod = -1;
 
-	if ((hash = fopen(nome_do_hash, "w+b")) == NULL)
+    if (((hash = fopen(nome_do_hash, "w+b")) == NULL))
     {
         printf("erro ao abrir");
         exit(1);
     }
     else
     {
-
-        for(int i = 0; i<tam; i++){
-            aux[i].usando = -1;
+        //cria o arquivo com as informações de cada lista
+        for (int i = 0; i < tam; i++)
+        {
+            lista.tam = -1;
+            lista.pos = i;
+            lista.prox = i + 1;
+            salvaLista(&lista, hash);
         }
-        fwrite(&aux, sizeof(TLista),1,hash);
+        
     }
 }
+
+// cria uma tabela preenchida com os códigos iguais a -1, depois faz os calculos.

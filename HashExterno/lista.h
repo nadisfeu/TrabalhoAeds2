@@ -12,10 +12,12 @@ typedef struct celula
 
 typedef struct lista
 {
-    TCelula* primeiro;
-    TCelula* ultimo;
-    int usando;
-    int tamanho;
+    int pos;
+    int tam;
+    int prox;
 }TLista;
 
+void salvaLista(TLista *lista, FILE *hash);
+TLista *leCabecalho(FILE *in);
+void imprimeCabecalho(TLista lista);
 #endif

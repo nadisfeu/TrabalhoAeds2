@@ -9,13 +9,10 @@
 #include "../Utilitarios/Utilitarios.c"
 #include "interface.c"
 #include "../hashExterno/hashExterno.c"
+#include "../hashExterno/lista.h"
 
 int main()
 {
-    int qntMesas = 300;
-    criaHash("hashmap",300-1);
-
-    /*
     FILE *mesas, *pedidos, *funcionarios, *log;
     if ((mesas = fopen("mesas.dat", "w+b")) == NULL || (pedidos = fopen("pedidos.dat", "w+b")) == NULL || (funcionarios = fopen("funcionarios.dat", "w+b")) == NULL || (log = fopen("log.txt", "a+")) == NULL)
     {
@@ -24,28 +21,29 @@ int main()
     }
     else
     {
-       
+        int qntMesas = 30;
+
         criarBase(mesas, qntMesas, "mesa");
-        //imprimeTodosMesa(mesas);
+        // imprimeTodosMesa(mesas);
 
         criarBase(funcionarios, qntMesas / 3, "funcionario");
-        //imprimeTodos(funcionarios);
-        
- 
-        SalvaTodosOsPedidos(pedidos);
-        //imprimeTodosPedido(pedidos);
+        // imprimeTodos(funcionarios);
 
-        printf("Ordenando mesas por Insertionsort");
+        SalvaTodosOsPedidos(pedidos);
+        // imprimeTodosPedido(pedidos);
+
+        /*printf("Ordenando mesas por Insertionsort");
         insertionSortMesa(mesas, qntMesas);
         imprimeTodosMesa(mesas);
+        */
+        
+        criaHash("hashmap.dat", 30 - 1, mesas);
 
-        MENU(mesas, pedidos, funcionarios, log, qntMesas);
+        // MENU(mesas, pedidos, funcionarios, log, qntMesas);
 
         fclose(pedidos);
         fclose(mesas);
         fclose(funcionarios);
-        */
-
-
-        return 0;
+    }
+    return 0;
 }
