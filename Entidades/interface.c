@@ -7,7 +7,7 @@ void MSG_MENU()
 {
     system("cls");
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU <<<<<<<<<<<<<<<<<<<<<<<<");
-    printf("\n\n\t1. ADICIONAR PEDIDOS A UMA MESA");
+    printf("\n\n\t1. ADICIONAR PEDIDOS A UMA MESAAA");
     printf("  \n\t2. BUSCAR FUNCIONARIOS SEQUENCIAL NAS PARTICOES");
     printf("  \n\t3. EXIBIR INFORMACOES SOBRE A MESA");
     printf("  \n\t4. SAIR");
