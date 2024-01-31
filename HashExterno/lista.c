@@ -30,3 +30,7 @@ void imprimeCabecalho(TLista lista){
     printf("posicao da lista: %d\n", lista.pos);
     printf("proxima lista: %d\n", lista.prox);
 }
+
+int tamanhoCabecalho(){
+    return sizeof(int) + sizeof(int) + sizeof(int);
+}
