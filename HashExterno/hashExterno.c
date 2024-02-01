@@ -1,4 +1,4 @@
-#include <stdlib.h>
+ #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -15,26 +15,36 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
     rewind(hashCompartimentos);
     rewind(hash);
 
-    TLista *aux;
-
     int posicaoNoHash = calculaHash(mesa->cod, tamBase);
 
+    TLista lista;
+    TLista *aux = leCabecalho(hash);
+    fseek(hashCompartimentos, aux[posicaoNoHash].pos, SEEK_SET);
+    fread(&lista, sizeof(TLista), 1, hash);
 
-    aux = leCabecalho(hash);
-
-    //no caso da lista está vazia, apenas adiciona
-    if (aux->tam == 0)
+    // Percorre a lista até o final
+    while (lista.prox != -1)
     {
-        fseek(hashCompartimentos, aux->pos  , SEEK_SET);
-        salvaMesa(mesa, hashCompartimentos);
-        aux->tam++;
-        salvaLista(aux,hash);
-        return;
+        fseek(hashCompartimentos, lista.prox, SEEK_SET);
+        fread(&lista, sizeof(TLista), 1, hash);
     }
-    //caso nao esteja, tratamento de colisoes e adiciona na posição ao lado
 
+    // Cria um novo elemento na lista
+    fseek(hashCompartimentos, ftell(hashCompartimentos), SEEK_SET);
+    salvaMesa(mesa, hashCompartimentos);
+    
+    // Atualiza a lista com a nova posição do último elemento
+    lista.prox = ftell(hashCompartimentos);
+    lista.tam++;
+    fseek(hashCompartimentos, aux[posicaoNoHash].pos, SEEK_SET);
+    fwrite(&lista, sizeof(TLista), 1, hash);
+
+    // Atualiza o cabeçalho do arquivo
+    aux[posicaoNoHash].tam++;
+    fseek(hash, 0, SEEK_SET);
+    fwrite(aux, sizeof(TLista), tamBase, hash);
 }
-
+ 
 void criaHash(char *nome_do_hash, int tam, FILE *mesas)
 {
     FILE *hash, *hashCompartimentos;
