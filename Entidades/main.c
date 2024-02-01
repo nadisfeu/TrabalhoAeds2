@@ -21,6 +21,7 @@ int main()
     }
     else
     {
+        FILE *hashCompartimentos;
         int qntMesas = 30;
 
         criarBase(mesas, qntMesas, "mesa");
@@ -37,7 +38,19 @@ int main()
         imprimeTodosMesa(mesas);
         */
         
-        criaHash("hashmap.dat", 30 - 1, mesas);
+        TMesa *mesa1;
+        mesa1 = mesa(23,2,230);
+        
+        FILE *hash;
+        if (((hash = fopen("hashmap.dat", "w+b")) == NULL) || ((hashCompartimentos = fopen("tabelaHash.dat", "w+b")) == NULL))
+    {
+        printf("erro ao abrir");
+        exit(1);
+    }
+        hashCompartimentos = criaHash( 30 - 1, mesas, hash);
+      
+        adiciona_no_hash(mesa1,hashCompartimentos,hash,30 -1);
+
 
         // MENU(mesas, pedidos, funcionarios, log, qntMesas);
 

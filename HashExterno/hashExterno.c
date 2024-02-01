@@ -19,11 +19,12 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
 
     TLista lista;
     TLista *aux = leCabecalho(hash);
+    
     fseek(hashCompartimentos, aux[posicaoNoHash].pos, SEEK_SET);
     fread(&lista, sizeof(TLista), 1, hash);
 
     // Percorre a lista até o final
-    while (lista.prox != -1)
+    while (lista.prox >= -1)
     {
         fseek(hashCompartimentos, lista.prox, SEEK_SET);
         fread(&lista, sizeof(TLista), 1, hash);
@@ -45,16 +46,14 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
     fwrite(aux, sizeof(TLista), tamBase, hash);
 }
  
-void criaHash(char *nome_do_hash, int tam, FILE *mesas)
+FILE *criaHash( int tam, FILE *mesas, FILE *hash)
 {
-    FILE *hash, *hashCompartimentos;
-    TLista *aux;
+    FILE *hashCompartimentos;
     TLista lista;
     TMesa mesa;
-    TMesa mesaAux[15];
     mesa.cod = -1;
 
-    if (((hash = fopen(nome_do_hash, "w+b")) == NULL) || ((hashCompartimentos = fopen("tabelaHash.dat", "w+b")) == NULL))
+    if ( ((hashCompartimentos = fopen("tabelaHash.dat", "w+b")) == NULL))
     {
         printf("erro ao abrir");
         exit(1);
@@ -73,6 +72,8 @@ void criaHash(char *nome_do_hash, int tam, FILE *mesas)
             }
             salvaLista(&lista, hash);
         }
+    fclose(hash);
+    return hashCompartimentos;
     }
 }
 
