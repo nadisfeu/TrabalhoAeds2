@@ -7,7 +7,7 @@
 
 int calculaHash(int cod, int tamBase)
 {
-    return (cod % tamBase);
+    return (tamBase % cod );
 }
 
 void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tamBase)
@@ -18,11 +18,14 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
     int posicaoNoHash = calculaHash(mesa->cod, tamBase);
 
     TLista lista;
-    TLista *aux = leCabecalho(hash);
-    
-    fseek(hashCompartimentos, aux[posicaoNoHash].pos, SEEK_SET);
-    fread(&lista, sizeof(TLista), 1, hash);
+    TLista *aux;
 
+    fseek(hash, posicaoNoHash * tamanhoCabecalho(), SEEK_SET);
+    aux = leCabecalho(hash);
+
+    fseek(hashCompartimentos, aux->pos - tamanho_registro_Mesa(), SEEK_SET);
+    fread(&lista, sizeof(TLista), 1, hash);
+    //^^problema nessa linha aq em cima
     // Percorre a lista até o final
     while (lista.prox >= -1)
     {
@@ -72,7 +75,6 @@ FILE *criaHash( int tam, FILE *mesas, FILE *hash)
             }
             salvaLista(&lista, hash);
         }
-    fclose(hash);
     return hashCompartimentos;
     }
 }

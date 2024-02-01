@@ -42,11 +42,12 @@ int main()
         mesa1 = mesa(23,2,230);
         
         FILE *hash;
-        if (((hash = fopen("hashmap.dat", "w+b")) == NULL) || ((hashCompartimentos = fopen("tabelaHash.dat", "w+b")) == NULL))
+        if ((hash = fopen("hashmap.dat", "w+b")) == NULL )
     {
         printf("erro ao abrir");
         exit(1);
     }
+        
         hashCompartimentos = criaHash( 30 - 1, mesas, hash);
       
         adiciona_no_hash(mesa1,hashCompartimentos,hash,30 -1);
