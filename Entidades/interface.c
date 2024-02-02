@@ -3,6 +3,8 @@
 
 #include "interface.h"
 
+
+//adicionar funções de hash na interface 
 void MSG_MENU()
 {
     system("cls");

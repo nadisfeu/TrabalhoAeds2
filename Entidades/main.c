@@ -52,6 +52,7 @@ int main()
       
         adiciona_no_hash(mesa1,hashCompartimentos,hash,30 -1);
 
+        
 
         // MENU(mesas, pedidos, funcionarios, log, qntMesas);
 
