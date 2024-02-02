@@ -17,36 +17,35 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
 
     int posicaoNoHash = calculaHash(mesa->cod, tamBase);
 
-    TLista lista;
     TLista *aux;
+    TMesa *mesa1;
 
     fseek(hash, posicaoNoHash * tamanhoCabecalho(), SEEK_SET);
     aux = leCabecalho(hash);
 
     fseek(hashCompartimentos, aux->pos - tamanho_registro_Mesa(), SEEK_SET);
-    fread(&lista, sizeof(TLista), 1, hash);
-    //^^problema nessa linha aq em cima
+    
+    mesa1 = leMesa(hashCompartimentos);
+
     // Percorre a lista até o final
-    while (lista.prox >= -1)
+    int i =0;
+    while (i < 15)
     {
-        fseek(hashCompartimentos, lista.prox, SEEK_SET);
-        fread(&lista, sizeof(TLista), 1, hash);
+        if(mesa1->cod == -1)
+        {   
+            //salva elemnto na hashmap
+            fseek(hashCompartimentos, - tamanho_registro_Mesa(), SEEK_CUR);
+            salvaMesa(mesa1,hashCompartimentos);
+            break;
+        }
+        mesa1 = leMesa(hashCompartimentos);
     }
 
-    // Cria um novo elemento na lista
-    fseek(hashCompartimentos, ftell(hashCompartimentos), SEEK_SET);
-    salvaMesa(mesa, hashCompartimentos);
     
     // Atualiza a lista com a nova posição do último elemento
-    lista.prox = ftell(hashCompartimentos);
-    lista.tam++;
-    fseek(hashCompartimentos, aux[posicaoNoHash].pos, SEEK_SET);
-    fwrite(&lista, sizeof(TLista), 1, hash);
-
-    // Atualiza o cabeçalho do arquivo
-    aux[posicaoNoHash].tam++;
-    fseek(hash, 0, SEEK_SET);
-    fwrite(aux, sizeof(TLista), tamBase, hash);
+    aux->tam++;
+    fseek(hash, - tamanhoCabecalho(), SEEK_CUR);
+    salvaLista(aux, hash);
 }
  
 FILE *criaHash( int tam, FILE *mesas, FILE *hash)
