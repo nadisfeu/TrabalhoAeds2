@@ -5,13 +5,22 @@
 
 #include "lista.c"
 
+void salva_no_log_hash(FILE *log, double time, char s[])
+{
+    fprintf(log, "%s", s);
+    fprintf(log, "Tempo: %.2f\n", time);
+}
+
 int calculaHash(int cod, int tamBase)
 {
     return (tamBase % cod);
 }
 
-void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tamBase)
+void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tamBase, FILE *log)
 {
+    clock_t begin, end;
+    begin = clock();
+
     rewind(hashCompartimentos);
     rewind(hash);
 
@@ -36,7 +45,7 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
         if (mesa1->cod == -1)
         {
             // salva elemnto na hashmap
-            salvaMesa(mesa, hashCompartimentos);
+            salvaMesa(mesa, hashCompartimentos); 
             break;
         }
         mesa1 = leMesa(hashCompartimentos);
@@ -47,6 +56,9 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
     aux->tam++;
     fseek(hash, -tamanhoCabecalho(), SEEK_CUR);
     salvaLista(aux, hash);
+
+    end = clock();
+    salva_no_log_hash(log, (double)(end - begin) / CLOCKS_PER_SEC, "Adicionado no hash\t");
 }
 
 FILE *criaHash(int tam, FILE *hash)
@@ -80,8 +92,11 @@ FILE *criaHash(int tam, FILE *hash)
     }
 }
 
-TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa)
+TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa, FILE *log)
 {
+    clock_t begin, end;
+    begin = clock();
+
     rewind(hashCompartimentos);
     rewind(hash);
 
@@ -105,6 +120,9 @@ TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *m
     {
         if (mesa1->cod == mesa->cod)
         {
+            end = clock();
+            salva_no_log_hash(log, (double)(end - begin) / CLOCKS_PER_SEC, "Mesa encontrada!!\t");
+
             return mesa1;
             break;
         }
@@ -112,19 +130,26 @@ TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *m
         i++;
     }
 
+    end = clock();
+    salva_no_log_hash(log, (double)(end - begin) / CLOCKS_PER_SEC, "Mesa nao encontrada!!\t");
+
     return NULL;
 }
 
-
-void exclui_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa)
+void exclui_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa, FILE *log)
 {
+    clock_t begin, end;
+    begin = clock();
+
     TLista *aux;
     TMesa *mesa1;
 
-    mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa);
+    mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa, log);
 
     if (mesa1==NULL){
         printf("NÃO EXISTE MESA A SER EXCLUIDA COM ESSE CODIGO");
+        end = clock();
+        salva_no_log_hash(log, (double)(end - begin) / CLOCKS_PER_SEC, "A messa nao pode ser excluida pois nao existe!!\t");
         return;
     }
 
@@ -157,5 +182,8 @@ void exclui_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *me
     }
 
     printf("MESA EXCLUIDA COM SUCESSO!");
+
+    end = clock();
+    salva_no_log_hash(log, (double)(end - begin) / CLOCKS_PER_SEC, "Mesa excluida!!\t");
 
 }

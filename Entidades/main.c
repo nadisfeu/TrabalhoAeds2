@@ -49,13 +49,13 @@ int main()
         
         hashCompartimentos = criaHash( 30 - 1, hash);
       
-        adiciona_no_hash(mesa1,hashCompartimentos,hash,30 -1);
+        adiciona_no_hash(mesa1, hashCompartimentos, hash, 30 -1, log);
 
-        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1);
+        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1, log);
 
-        exclui_no_hash(hashCompartimentos, hash, 30-1, mesa1);
+        exclui_no_hash(hashCompartimentos, hash, 30-1, mesa1, log);
 
-        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1);
+        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1, log);
 
         // MENU(mesas, pedidos, funcionarios, log, qntMesas);
 
