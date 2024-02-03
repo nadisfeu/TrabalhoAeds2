@@ -1,5 +1,5 @@
-#ifndef HASH_H_INCLUDED
-#define HASH_H_INCLUDED
+#ifndef HASHEXTERNO_H_INCLUDED
+#define HASHEXTERNO_H_INCLUDED
 
 #include<stdlib.h>
 #include<stdio.h>

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 
+#include "hashexterno.h"
 #include "lista.c"
 
 void salva_no_log_hash(FILE *log, double time, char s[])

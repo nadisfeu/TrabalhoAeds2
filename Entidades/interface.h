@@ -7,6 +7,7 @@
 #include "funcionario.h"
 #include "mesas.h"
 #include "pedidos.h"
+#include "../HashExterno/hashexterno.h"
 
 
 void MSG_MENU(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL

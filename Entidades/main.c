@@ -3,13 +3,13 @@
 #include <string.h>
 #include <time.h>
 
-// #include "Entidades/Headers/mesas.h"
+
 #include "mesas.c"
 #include "funcionario.c"
 #include "../Utilitarios/Utilitarios.c"
 #include "interface.c"
-#include "../HashExterno/hashExterno.c"
-#include "../HashExterno/lista.c"
+#include "../HashExterno/hashexterno.c"
+
 
 int main()
 {
@@ -37,10 +37,9 @@ int main()
         imprimeTodosMesa(mesas);
 
         criarBase(funcionarios, qntMesas / 3, "funcionario");
-        // imprimeTodos(funcionarios);
 
         SalvaTodosOsPedidos(pedidos);
-        // imprimeTodosPedido(pedidos);
+
         /*printf("Ordenando mesas por Insertionsort");
         insertionSortMesa(mesas, qntMesas);
         imprimeTodosMesa(mesas);

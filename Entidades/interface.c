@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #include "interface.h"
-#include "hashExterno.c"
 
 //adicionar funções de hash na interface 
 void MSG_MENU()
@@ -24,10 +23,11 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashC
     int opcao = 0;
     int aux;
     int c = 1;
-    char* nomeParticao = "particao1.dat";
-    int qtdParticoes;
-    qtdParticoes = selecao_subst2(funcionarios, qntMesas /3);
-    FILE *AUX;
+    
+    //char* nomeParticao = "particao1.dat";
+    //int qtdParticoes;
+    //qtdParticoes = selecao_subst2(funcionarios, qntMesas /3);
+    //FILE *AUX;
     
 
     do
@@ -60,7 +60,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashC
             system("PAUSE");
             break;
         case 2: // PESQUISAR
-            printf("\nInforme o codigo do funcionario que deseja pesquisar: ");
+           /* printf("\nInforme o codigo do funcionario que deseja pesquisar: ");
             fflush(stdin);
             scanf("%d", &aux);
             c = 1;
@@ -88,6 +88,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashC
                 printf("\nO funcionario NAO existe!\n\n");
             }
             system("PAUSE");
+            */
             break;
 
         case 3: // IMPRIMIR
@@ -116,6 +117,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashC
             scanf("%d", &aux);
             mesa1->cod = aux;
             exclui_no_hash(hashCompartimentos, hash, tamBase, mesa1, log);
+            break;
         
         case 5:
             system("cls");
@@ -128,5 +130,5 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashC
             printf("\n\n\n\t >>>>>> MSG: Digite uma opcao valida!!! <<<<<<\n");
             system("PAUSE");
         } // fim do bloco switch
-    } while (opcao != 4);
+    } while (opcao != 5);
 }

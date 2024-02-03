@@ -1,7 +1,8 @@
-#include "lista.h"
 
 #include<stdio.h>
 #include<stdlib.h>
+
+#include "lista.h"
 
 void salvaLista(TLista *lista, FILE *hash){
     fwrite(&lista->tam, sizeof(int),1,hash);
