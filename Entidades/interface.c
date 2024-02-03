@@ -92,24 +92,12 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashC
             break;
 
         case 3: // IMPRIMIR
-            printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA OBTER AS INFORMACOES:");
+             printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA OBTER AS INFORMACOES:");
             fflush(stdin);
-            scanf("%d", &aux);
-            mesa1->cod = aux;
+            scanf("%d", &mesa1->cod);
             mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa1, log);
-            printf("\n\t >>>>>> IMPRIMINDO AS INFORMACOES DA MESA!! <<<<<<\n");
-
-            if (mesa1 != NULL)
-            {
-                imprimeMesa(*mesa1);
-                LePedidosDaMesa(log, pedidos, mesa1);
-            }
-            else
-            {
-                printf("Digite um codigo de mesa valido!");
-            }
-            system("PAUSE");
-
+            imprimeMesa(*mesa1);
+    
             break;
         case 4:
             printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA EXCLUIR: ");
