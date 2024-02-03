@@ -10,7 +10,8 @@ int calculaHash(int cod, int tamBase);
 void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tamBase);
 
 //cria o hash
-FILE *criaHash(char *nome_do_hash, int tam, FILE *mesas);
+FILE *criaHash(int tam, FILE *hash);
 
+TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa);
 
 #endif

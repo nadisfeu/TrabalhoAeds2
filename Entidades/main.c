@@ -32,7 +32,6 @@ int main()
 
         SalvaTodosOsPedidos(pedidos);
         // imprimeTodosPedido(pedidos);
-
         /*printf("Ordenando mesas por Insertionsort");
         insertionSortMesa(mesas, qntMesas);
         imprimeTodosMesa(mesas);
@@ -48,11 +47,11 @@ int main()
         exit(1);
     }
         
-        hashCompartimentos = criaHash( 30 - 1, mesas, hash);
+        hashCompartimentos = criaHash( 30 - 1, hash);
       
         adiciona_no_hash(mesa1,hashCompartimentos,hash,30 -1);
 
-        
+        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1);
 
         // MENU(mesas, pedidos, funcionarios, log, qntMesas);
 

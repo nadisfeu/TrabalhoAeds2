@@ -99,4 +99,3 @@ void LePedidosDaMesa(FILE *log, FILE *pedidos, TMesa *m)
         imprimePedido(p);
     }
 }
-

@@ -36,10 +36,11 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
         if (mesa1->cod == -1)
         {
             // salva elemnto na hashmap
-            salvaMesa(mesa1, hashCompartimentos);
+            salvaMesa(mesa, hashCompartimentos);
             break;
         }
         mesa1 = leMesa(hashCompartimentos);
+        i++;
     }
 
     // Atualiza a lista com a nova posição do último elemento
@@ -48,7 +49,7 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
     salvaLista(aux, hash);
 }
 
-FILE *criaHash(int tam, FILE *mesas, FILE *hash)
+FILE *criaHash(int tam, FILE *hash)
 {
     FILE *hashCompartimentos;
     TLista lista;
@@ -77,4 +78,39 @@ FILE *criaHash(int tam, FILE *mesas, FILE *hash)
         }
         return hashCompartimentos;
     }
+}
+
+TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa)
+{
+    rewind(hashCompartimentos);
+    rewind(hash);
+
+    int posicaoNoHash = calculaHash(mesa->cod, tamBase);
+
+    TLista *aux;
+    TMesa *mesa1;
+
+    fseek(hash, posicaoNoHash * tamanhoCabecalho(), SEEK_SET);
+    aux = leCabecalho(hash);
+
+    fseek(hashCompartimentos, aux->pos - tamanho_registro_Mesa(), SEEK_SET);
+
+    mesa1 = leMesa(hashCompartimentos);
+
+    // Percorre a lista até o final
+    int i = 0; //ok
+    fseek(hashCompartimentos, -tamanho_registro_Mesa(), SEEK_CUR);
+
+    while (i < 15)
+    {
+        if (mesa1->cod == mesa->cod)
+        {
+            return mesa1;
+            break;
+        }
+        mesa1 = leMesa(hashCompartimentos);
+        i++;
+    }
+
+    return NULL;
 }
