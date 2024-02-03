@@ -33,6 +33,8 @@ int main()
         criarBase(mesas, qntMesas, "mesa");
         imprimeTodosMesa(mesas);
 
+        int vetorParaPesquisar[5] = {17, 19, 21,23, 25};
+
         criarBase(funcionarios, qntMesas / 3, "funcionario");
 
         SalvaTodosOsPedidos(pedidos);
@@ -45,30 +47,30 @@ int main()
         hashCompartimentos = criaHash(tamBase, hash);
         adiciona_todas_as_mesas_no_hash(mesas, hash, hashCompartimentos, log, tamBase);
 
+        mesa1 = mesa(12, 0, 0);
 
+        for (int i = 0; i < 5; i++)
+        {
+            mesa1->cod =  vetorParaPesquisar[i];
+            mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa1, log);
+            imprimeMesa(*mesa1);
+        }
 
-        printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA OBTER AS INFORMACOES:");
-        fflush(stdin);
-        scanf("%d", &mesa1->cod);
-        mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa1, log);
-        imprimeMesa(*mesa1);
-        
+        printf("\n\n");
+        mesa1->cod = vetorParaPesquisar[2];
+        exclui_no_hash(hashCompartimentos,hash,tamBase,mesa1,log);
+        printf("\n\n");
 
+        for (int i = 0; i < 5; i++)
+        {
+            mesa1->cod =  vetorParaPesquisar[i];
+            mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa1, log);
 
-
-    
-
-        MENU(mesas, pedidos, funcionarios, log, hashCompartimentos, hash,tamBase, qntMesas);
-
-        /*
-        adiciona_no_hash(mesa1, hashCompartimentos, hash, 30 - 1, log);
-
-        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 - 1, mesa1, log);
-
-        exclui_no_hash(hashCompartimentos, hash, 30 - 1, mesa1, log);
-
-        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 - 1, mesa1, log);
-        */
+            if (mesa1->cod == -1)
+                printf("\ncodigo %d nao existe mais.\n", vetorParaPesquisar[i]);
+            else
+                imprimeMesa(*mesa1);
+        }
 
         fclose(pedidos);
         fclose(mesas);

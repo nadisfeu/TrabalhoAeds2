@@ -95,6 +95,7 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashC
              printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA OBTER AS INFORMACOES:");
             fflush(stdin);
             scanf("%d", &mesa1->cod);
+            fflush(stdin);
             mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa1, log);
             imprimeMesa(*mesa1);
     

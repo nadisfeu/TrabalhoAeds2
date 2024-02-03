@@ -133,8 +133,9 @@ TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *m
 
     end = clock();
     salva_no_log_hash(log, (double)(end - begin) / CLOCKS_PER_SEC, "Mesa nao encontrada!!\t");
+    mesa1->cod = -1;
 
-    return NULL;
+    return mesa1;
 }
 
 void exclui_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa, FILE *log)
