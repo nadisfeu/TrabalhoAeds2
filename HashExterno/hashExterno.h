@@ -14,4 +14,6 @@ FILE *criaHash(int tam, FILE *hash);
 
 TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa);
 
+void exclui_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa);
+
 #endif

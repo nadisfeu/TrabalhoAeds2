@@ -53,6 +53,10 @@ int main()
 
         mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1);
 
+        exclui_no_hash(hashCompartimentos, hash, 30-1, mesa1);
+
+        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1);
+
         // MENU(mesas, pedidos, funcionarios, log, qntMesas);
 
         fclose(pedidos);

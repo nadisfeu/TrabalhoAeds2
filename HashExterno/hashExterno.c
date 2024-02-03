@@ -114,3 +114,48 @@ TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *m
 
     return NULL;
 }
+
+
+void exclui_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *mesa)
+{
+    TLista *aux;
+    TMesa *mesa1;
+
+    mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa);
+
+    if (mesa1==NULL){
+        printf("NÃO EXISTE MESA A SER EXCLUIDA COM ESSE CODIGO");
+        return;
+    }
+
+    rewind(hashCompartimentos);
+    rewind(hash);
+
+    int posicaoNoHash = calculaHash(mesa->cod, tamBase);
+
+    fseek(hash, posicaoNoHash * tamanhoCabecalho(), SEEK_SET);
+    aux = leCabecalho(hash);
+
+    fseek(hashCompartimentos, aux->pos - tamanho_registro_Mesa(), SEEK_SET);
+
+    mesa1 = leMesa(hashCompartimentos);
+
+    // Percorre a lista até o final
+    int i = 0; //ok
+    fseek(hashCompartimentos, -tamanho_registro_Mesa(), SEEK_CUR);
+
+    while (i < 15)
+    {
+        if (mesa1->cod == mesa->cod)
+        {
+            mesa1->cod=-1;
+            salvaMesa(mesa1, hashCompartimentos);
+            break;
+        }
+        mesa1 = leMesa(hashCompartimentos);
+        i++;
+    }
+
+    printf("MESA EXCLUIDA COM SUCESSO!");
+
+}
