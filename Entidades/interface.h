@@ -8,8 +8,9 @@
 #include "mesas.h"
 #include "pedidos.h"
 
+
 void MSG_MENU(); // MENSAGEM PARA EXIBIR O MENU PRINCIPAL
 
-void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log,int qntMesas); // MÓDULO DE MENU
+void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashCompartimentos, FILE *hash, int tamBase, int qntMesas);// MÓDULO DE MENU
 
 # endif // INTERFACE_H_INCLUDED

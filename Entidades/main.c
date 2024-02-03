@@ -8,8 +8,8 @@
 #include "funcionario.c"
 #include "../Utilitarios/Utilitarios.c"
 #include "interface.c"
-#include "../hashExterno/hashExterno.c"
-#include "../hashExterno/lista.h"
+#include "../HashExterno/hashExterno.c"
+#include "../HashExterno/lista.c"
 
 int main()
 {
@@ -49,7 +49,8 @@ int main()
         hashCompartimentos = criaHash(tamBase, hash);
         adiciona_todas_as_mesas_no_hash(mesas, hash, hashCompartimentos, log, tamBase);
 
-        //MENU(mesas, pedidos, funcionarios, log, qntMesas);
+
+        MENU(mesas, pedidos, funcionarios, log,hashCompartimentos, hash,tamBase, qntMesas);
         
         /*
         adiciona_no_hash(mesa1, hashCompartimentos, hash, 30 - 1, log);

@@ -40,7 +40,7 @@ void adiciona_no_hash(TMesa *mesa, FILE *hashCompartimentos, FILE *hash, int tam
     int i = 0;
     fseek(hashCompartimentos, -tamanho_registro_Mesa(), SEEK_CUR);
 
-    while (i < 15)
+    while (i < (tamBase/3))
     {
         if (mesa1->cod == -1)
         {
@@ -82,7 +82,7 @@ FILE *criaHash(int tam, FILE *hash)
             lista.tam = 0;
             lista.pos = ftell(hashCompartimentos); // salva o endereço do primeiro elemento daquela lista
             lista.prox = i + 1;
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < tam/3; j++)
             { // 10 tá aqui temporariamente
                 salvaMesa(&mesa, hashCompartimentos);
             }
@@ -116,7 +116,7 @@ TMesa *busca_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *m
     int i = 0; //ok
     fseek(hashCompartimentos, -tamanho_registro_Mesa(), SEEK_CUR);
 
-    while (i < 15)
+    while (i < (tamBase/3))
     {
         if (mesa1->cod == mesa->cod)
         {
@@ -169,7 +169,7 @@ void exclui_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *me
     int i = 0; //ok
     fseek(hashCompartimentos, -tamanho_registro_Mesa(), SEEK_CUR);
 
-    while (i < 15)
+    while (i < (tamBase/3))
     {
         if (mesa1->cod == mesa->cod)
         {

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "interface.h"
-
+#include "hashExterno.c"
 
 //adicionar funções de hash na interface 
 void MSG_MENU()
@@ -11,11 +11,12 @@ void MSG_MENU()
     printf("\n\n\t>>>>>>>>>>>>>>>>>>>>>>> OPCOES DE MENU <<<<<<<<<<<<<<<<<<<<<<<<");
     printf("\n\n\t1. ADICIONAR PEDIDOS A UMA MESA");
     printf("  \n\t2. BUSCAR FUNCIONARIOS SEQUENCIAL NAS PARTICOES");
-    printf("  \n\t3. EXIBIR INFORMACOES SOBRE A MESA");
-    printf("  \n\t4. SAIR");
+    printf("  \n\t3. EXIBIR INFORMACOES SOBRE A MESA NO HASH");
+    printf("  \n\t4. EXCLUIR A MESA NO HASH");
+    printf("  \n\t5. SAIR");
 }
 
-void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesas)
+void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, FILE *hashCompartimentos, FILE *hash, int tamBase, int qntMesas)
 {
     TMesa *mesa1;
     // TPedido *pedido;
@@ -88,11 +89,13 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
             }
             system("PAUSE");
             break;
+
         case 3: // IMPRIMIR
             printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA OBTER AS INFORMACOES:");
             fflush(stdin);
             scanf("%d", &aux);
-            mesa1 = BuscaBinariaMesa(log, aux, mesas, (qntMesas - (qntMesas - 1)), qntMesas);
+            mesa1->cod = aux;
+            mesa1 = busca_no_hash(hashCompartimentos, hash, tamBase, mesa1, log);
             printf("\n\t >>>>>> IMPRIMINDO AS INFORMACOES DA MESA!! <<<<<<\n");
 
             if (mesa1 != NULL)
@@ -108,6 +111,13 @@ void MENU(FILE *mesas, FILE *pedidos, FILE *funcionarios, FILE *log, int qntMesa
 
             break;
         case 4:
+            printf("\n DIGITE O CODIGO DA MESA VOCE DESEJA EXCLUIR: ");
+            fflush(stdin);
+            scanf("%d", &aux);
+            mesa1->cod = aux;
+            exclui_no_hash(hashCompartimentos, hash, tamBase, mesa1, log);
+        
+        case 5:
             system("cls");
             printf("\n\n\n\t >>>>>> MSG: Saindo do MODULO...!!! <<<<<<\n");
             system("PAUSE");
