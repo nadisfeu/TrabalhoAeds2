@@ -45,7 +45,7 @@ void criarBase(FILE *out, int tam, char *tipo)
         TMesa *f;
         for (int i = 0; i < tam; i++)
         {
-            f = mesa(vet[i], (rand() % 10 + 1), 100);
+            f = mesa(vet[i] , (rand() % 10 + 1), 100);
             salvaMesa(f, out);
         }
 

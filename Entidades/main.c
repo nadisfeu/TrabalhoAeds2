@@ -14,18 +14,27 @@
 int main()
 {
     FILE *mesas, *pedidos, *funcionarios, *log;
-    if ((mesas = fopen("mesas.dat", "w+b")) == NULL || (pedidos = fopen("pedidos.dat", "w+b")) == NULL || (funcionarios = fopen("funcionarios.dat", "w+b")) == NULL || (log = fopen("log.txt", "a+")) == NULL)
+    FILE *hash;
+    FILE *hashCompartimentos;
+
+
+    if ((mesas = fopen("mesas.dat", "w+b")) == NULL ||
+        (pedidos = fopen("pedidos.dat", "w+b")) == NULL ||
+        (funcionarios = fopen("funcionarios.dat", "w+b")) == NULL ||
+        (log = fopen("log.txt", "a+")) == NULL ||
+        (hash = fopen("hashmap.dat", "w+b")) == NULL)
     {
         printf("erro ao abrir");
         exit(1);
     }
     else
     {
-        FILE *hashCompartimentos;
+
         int qntMesas = 30;
+        int tamBase = qntMesas - 1;
 
         criarBase(mesas, qntMesas, "mesa");
-        // imprimeTodosMesa(mesas);
+        imprimeTodosMesa(mesas);
 
         criarBase(funcionarios, qntMesas / 3, "funcionario");
         // imprimeTodos(funcionarios);
@@ -36,28 +45,21 @@ int main()
         insertionSortMesa(mesas, qntMesas);
         imprimeTodosMesa(mesas);
         */
+
+        hashCompartimentos = criaHash(tamBase, hash);
+        adiciona_todas_as_mesas_no_hash(mesas, hash, hashCompartimentos, log, tamBase);
+
+        //MENU(mesas, pedidos, funcionarios, log, qntMesas);
         
-        TMesa *mesa1;
-        mesa1 = mesa(23,2,230);
-        
-        FILE *hash;
-        if ((hash = fopen("hashmap.dat", "w+b")) == NULL )
-    {
-        printf("erro ao abrir");
-        exit(1);
-    }
-        
-        hashCompartimentos = criaHash( 30 - 1, hash);
-      
-        adiciona_no_hash(mesa1, hashCompartimentos, hash, 30 -1, log);
+        /*
+        adiciona_no_hash(mesa1, hashCompartimentos, hash, 30 - 1, log);
 
-        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1, log);
+        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 - 1, mesa1, log);
 
-        exclui_no_hash(hashCompartimentos, hash, 30-1, mesa1, log);
+        exclui_no_hash(hashCompartimentos, hash, 30 - 1, mesa1, log);
 
-        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 -1, mesa1, log);
-
-        // MENU(mesas, pedidos, funcionarios, log, qntMesas);
+        mesa1 = busca_no_hash(hashCompartimentos, hash, 30 - 1, mesa1, log);
+        */
 
         fclose(pedidos);
         fclose(mesas);
@@ -65,4 +67,3 @@ int main()
     }
     return 0;
 }
-

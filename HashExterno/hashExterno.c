@@ -187,3 +187,19 @@ void exclui_no_hash(FILE *hashCompartimentos, FILE *hash, int tamBase, TMesa *me
     salva_no_log_hash(log, (double)(end - begin) / CLOCKS_PER_SEC, "Mesa excluida!!\t");
 
 }
+
+void adiciona_todas_as_mesas_no_hash(FILE *mesas, FILE *hash, FILE *hashCompartimentos, FILE * log, int tamBase){
+    
+    rewind(mesas);
+
+    TMesa *mesa;
+    
+    while (!feof(mesas))
+    {
+        mesa = leMesa(mesas);
+        if (mesa == NULL)
+            break;   
+        adiciona_no_hash(mesa,hashCompartimentos,hash,tamBase,log);
+    }
+}
+
