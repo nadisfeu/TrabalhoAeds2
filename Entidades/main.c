@@ -49,6 +49,8 @@ int main()
 
         mesa1 = mesa(12, 0, 0);
 
+
+        //faz a busca
         for (int i = 0; i < 5; i++)
         {
             mesa1->cod =  vetorParaPesquisar[i];
@@ -56,11 +58,13 @@ int main()
             imprimeMesa(*mesa1);
         }
 
+        //exclui uma mesa
         printf("\n\n");
         mesa1->cod = vetorParaPesquisar[2];
         exclui_no_hash(hashCompartimentos,hash,tamBase,mesa1,log);
         printf("\n\n");
 
+        //refaz a busca
         for (int i = 0; i < 5; i++)
         {
             mesa1->cod =  vetorParaPesquisar[i];
