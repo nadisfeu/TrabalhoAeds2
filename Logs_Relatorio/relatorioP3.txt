@@ -1,0 +1,22 @@
+Tamanho de Base 30:
+Registramos operações com mesas e tempos associados para esta configuração específica, e foram eficazes, com os tempos muito proximos de zero (0.0).
+
+Tamanho de Base 300:
+Repetimos o processo com um tamanho de base diferente para avaliar o impacto nas operações do HashMap, e os tempos de busca continuaram próximos de zero (0,0), pois a função de hash de é uma função de custo O(1).
+
+Tamanho de Base 3000:
+Outra configuração de tamanho de base foi analisada para compreender melhor as implicações na eficiência do HashMap, e os resultados foram os mesmos.
+
+Resultados:
+
+Buscas Bem-Sucedidas:
+A análise mostra que houve várias buscas bem-sucedidas, indicando que o HashMap conseguiu encontrar as mesas correspondentes de maneira eficiente.
+O tempo associado a essas buscas bem-sucedidas é de 0.00, sugerindo um desempenho rápido e eficaz na recuperação dos valores associados às chaves.
+Buscas Sem Sucesso:
+
+Houve casos em que a busca pela mesa não foi bem-sucedida.
+O tempo associado a essas buscas sem sucesso também é de 0.00, indicando que, mesmo quando a chave não está presente, o HashMap responde rapidamente.
+Exclusão de Mesa:
+
+Uma operação de exclusão de mesa foi registrada, indicando que a estrutura suporta remoção de entradas.
+
